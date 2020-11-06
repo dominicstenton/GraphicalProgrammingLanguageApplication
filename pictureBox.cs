@@ -16,7 +16,7 @@ namespace GraphicalProgrammingLanguageApplication
         public pictureBox(Graphics g)
         {
             this.g = g;
-            positionX = positionY = 0;
+            positionX = positionY = 10;
             p = new Pen(Color.Black, 1);
         }
 

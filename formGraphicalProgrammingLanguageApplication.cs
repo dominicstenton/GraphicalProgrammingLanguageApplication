@@ -169,17 +169,53 @@ namespace GraphicalProgrammingLanguageApplication
                         Console.WriteLine("Square has been drawn");
                     }
 
-                    else if (commands[0].Equals("circle") == true)
-                    {
-                        drawCircle.createCircle(variable1, variable2);
-                        Console.WriteLine("Circle has been drawn");
-                    }
+            //        else if (commands[0].Equals("circle") == true)
+            //        {
+            //            drawCircle.createCircle(variable1, variable2);
+            //            Console.WriteLine("Circle has been drawn");
+            //        }
 
                     else if (commands[0].Equals("triangle") == true)
                     {
                         drawTriangle.createTriangle(variable1, variable2);
                         Console.WriteLine("Triangle has been drawn");
                     }
+
+                    //Run command
+                    else if (commands[0].Equals("run") == true)
+                    {
+                        string o  = richCommandLine.Text;
+
+                        List<string> commandLineList = new List<string>(
+                            o.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries));
+
+                        foreach (string order in commandLineList)
+                        {
+                            String[] orders = order.Split(' ', ',');
+
+                            String instruct = orders[0];
+                            int order1 = int.Parse(orders[1]);
+                            int order2 = int.Parse(orders[2]);
+
+                                 if (instruct.Equals("circle") == true)
+                            {
+                                drawCircle.createCircle(order1, order2);
+                                Console.WriteLine("Circle has been drawn");
+
+                            }
+
+                        }
+
+
+                    }
+
+
+
+
+
+
+
+
 
                     commandLine.Text = "";
                     Refresh();
