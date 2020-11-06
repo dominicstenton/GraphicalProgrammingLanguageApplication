@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="circle.cs" />
     <Compile Include="square.cs" />
     <Compile Include="pictureBox.cs" />
     <Compile Include="formGraphicalProgrammingLanguageApplication.cs">
@@ -56,6 +57,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="triangle.cs" />
     <EmbeddedResource Include="formGraphicalProgrammingLanguageApplication.resx">
       <DependentUpon>formGraphicalProgrammingLanguageApplication.cs</DependentUpon>
     </EmbeddedResource>

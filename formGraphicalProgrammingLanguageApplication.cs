@@ -19,17 +19,22 @@ namespace GraphicalProgrammingLanguageApplication
 {
     public partial class formGraphicalProgrammingLanguageApplication : Form
     {
-
+        //Size of the form
         static int sizeX = 480;
         static int sizeY = 640;
         Bitmap outputBitmap = new Bitmap(sizeX, sizeY);
         pictureBox pictureBoxCanvas;
-
+        square drawSquare;
+        circle drawCircle;
+        triangle drawTriangle;
 
         public formGraphicalProgrammingLanguageApplication()
         {
             InitializeComponent();
             pictureBoxCanvas = new pictureBox(Graphics.FromImage(outputBitmap));
+            drawSquare = new square(Graphics.FromImage(outputBitmap));
+            drawCircle = new circle(Graphics.FromImage(outputBitmap));
+            drawTriangle = new triangle(Graphics.FromImage(outputBitmap));
         }
 
        //File menu button being clicked (tool strip menu item)
@@ -90,12 +95,31 @@ namespace GraphicalProgrammingLanguageApplication
                     String instruction = commands[0];
                     int variable1 = int.Parse(commands[1]);
                     int variable2 = int.Parse(commands[2]);
+                   // int variable3 = int.Parse(commands[3]);
 
                     if (commands[0].Equals("drawto") == true)
                     {
-                        pictureBoxCanvas.DrawLine(variable1, variable2);
+                        pictureBoxCanvas.drawLine(variable1, variable2);
                         Console.WriteLine("Line has been drawn");
 
+                    }
+
+                    else if (commands[0].Equals("square") == true)
+                    {
+                        drawSquare.createSquare(variable1, variable2);
+                        Console.WriteLine("Square has been drawn");
+                    }
+
+                    else if (commands[0].Equals("circle") == true)
+                    {
+                        drawCircle.createCircle(variable1, variable2);
+                        Console.WriteLine("Circle has been drawn");
+                    }
+
+                    else if (commands[0].Equals("triangle") == true)
+                    {
+                        drawTriangle.createTriangle(variable1, variable2);
+                        Console.WriteLine("Triangle has been drawn");
                     }
 
                     commandLine.Text = "";

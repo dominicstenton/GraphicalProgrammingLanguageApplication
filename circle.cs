@@ -7,25 +7,22 @@ using System.Threading.Tasks;
 
 namespace GraphicalProgrammingLanguageApplication
 {
-    class pictureBox
+    class circle
     {
         Graphics g;
         Pen p;
         int positionX, positionY;
 
-        public pictureBox(Graphics g)
+        public circle(Graphics g)
         {
             this.g = g;
             positionX = positionY = 0;
             p = new Pen(Color.Black, 1);
         }
 
-        //Line being draw to the pictureBox
-        public void drawLine(int destinationX, int destinationY)
+        public void createCircle(int destinationX, int destinationY)
         {
-            g.DrawLine(p, positionX, positionY, destinationX, destinationY);
-            positionX = destinationX;
-            positionY = destinationY;
+            g.DrawEllipse(p, positionX, positionY, destinationX, destinationY);
         }
     }
 }

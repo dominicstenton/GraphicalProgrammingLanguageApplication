@@ -7,25 +7,24 @@ using System.Threading.Tasks;
 
 namespace GraphicalProgrammingLanguageApplication
 {
-    class pictureBox
+    class triangle
     {
         Graphics g;
         Pen p;
         int positionX, positionY;
 
-        public pictureBox(Graphics g)
+        public triangle(Graphics g)
         {
             this.g = g;
             positionX = positionY = 0;
             p = new Pen(Color.Black, 1);
         }
 
-        //Line being draw to the pictureBox
-        public void drawLine(int destinationX, int destinationY)
+        public void createTriangle(int destinationX, int destinationY)
         {
-            g.DrawLine(p, positionX, positionY, destinationX, destinationY);
-            positionX = destinationX;
-            positionY = destinationY;
+            //Point[] a = { new Point(10, 10), new Point(200, 100), new Point(400, 100) };
+            Point[] a = { new Point(destinationX, destinationY), new Point(destinationX, destinationY), new Point(destinationX, destinationY) };
+            g.DrawPolygon(p, a);
         }
     }
 }
