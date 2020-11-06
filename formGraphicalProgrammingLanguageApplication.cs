@@ -76,9 +76,62 @@ namespace GraphicalProgrammingLanguageApplication
         //Rich command line awaiting use (rich textbox)
         private void richCommandLine_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+           if (e.KeyCode == Keys.Enter)
             {
+                String command = richCommandLine.Text.Trim().ToLower();
+                String[] commands = command.Split(' ', ',');
 
+                try
+                {
+                    String instruction = commands[0];
+                    int variable1 = int.Parse(commands[1]);
+                    int variable2 = int.Parse(commands[2]);
+                   // int variable3 = int.Parse(commands[3]);
+
+                    if (commands[0].Equals("drawto") == true)
+                    {
+                        pictureBoxCanvas.drawLine(variable1, variable2);
+                        Console.WriteLine("Line has been drawn");
+
+                    }
+
+                    else if (commands[0].Equals("moveto") == true)
+                    {
+                        pictureBoxCanvas.moveLine(variable1, variable2);
+                        Console.WriteLine("You have moved the pen position");
+                    }
+
+                    else if (commands[0].Equals("square") == true)
+                    {
+                        drawSquare.createSquare(variable1, variable2);
+                        Console.WriteLine("Square has been drawn");
+                    }
+
+                    else if (commands[0].Equals("circle") == true)
+                    {
+                        drawCircle.createCircle(variable1, variable2);
+                        Console.WriteLine("Circle has been drawn");
+                    }
+
+                    else if (commands[0].Equals("triangle") == true)
+                    {
+                        drawTriangle.createTriangle(variable1, variable2);
+                        Console.WriteLine("Triangle has been drawn");
+                    }
+
+                    commandLine.Text = "";
+                    Refresh();
+                }
+                
+                catch (FormatException i)
+                {
+                    Console.WriteLine("Invalid parameter");
+                }
+
+                catch (IndexOutOfRangeException i)
+                {
+                    Console.WriteLine("Invalid parameter");
+                }
             }
         }
 
@@ -102,6 +155,12 @@ namespace GraphicalProgrammingLanguageApplication
                         pictureBoxCanvas.drawLine(variable1, variable2);
                         Console.WriteLine("Line has been drawn");
 
+                    }
+
+                    else if (commands[0].Equals("moveto") == true)
+                    {
+                        pictureBoxCanvas.moveLine(variable1, variable2);
+                        Console.WriteLine("You have moved the pen position");
                     }
 
                     else if (commands[0].Equals("square") == true)
@@ -141,6 +200,7 @@ namespace GraphicalProgrammingLanguageApplication
         //Run button being clicked (button)
         private void buttonRun_Click(object sender, EventArgs e)
         {
+          
 
         }
 

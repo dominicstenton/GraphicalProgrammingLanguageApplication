@@ -90,7 +90,7 @@
             this.file});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1009, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1016, 28);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip";
             // 
@@ -148,7 +148,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1009, 488);
+            this.ClientSize = new System.Drawing.Size(1016, 490);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.richCommandLine);
             this.Controls.Add(this.commandLine);

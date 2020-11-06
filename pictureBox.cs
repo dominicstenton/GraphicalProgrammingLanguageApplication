@@ -27,5 +27,11 @@ namespace GraphicalProgrammingLanguageApplication
             positionX = destinationX;
             positionY = destinationY;
         }
+
+        public void moveLine(int destinationX, int destinationY)
+        {
+            positionX = destinationX;
+            positionY = destinationY;
+        }
     }
 }
