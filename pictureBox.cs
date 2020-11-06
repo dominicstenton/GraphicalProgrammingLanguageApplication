@@ -33,5 +33,16 @@ namespace GraphicalProgrammingLanguageApplication
             positionX = destinationX;
             positionY = destinationY;
         }
+
+        public void changePenRed()
+        {
+            p.Color = Color.Red;
+        }
+
+        public void clearCanvas()
+        {
+          //  g.Clear(Color.Black);
+
+        }
     }
 }

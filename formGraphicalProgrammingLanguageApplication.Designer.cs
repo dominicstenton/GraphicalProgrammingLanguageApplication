@@ -39,6 +39,7 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Clear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -144,11 +145,22 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // Clear
+            // 
+            this.Clear.Location = new System.Drawing.Point(304, 441);
+            this.Clear.Name = "Clear";
+            this.Clear.Size = new System.Drawing.Size(202, 34);
+            this.Clear.TabIndex = 5;
+            this.Clear.Text = "Clear";
+            this.Clear.UseVisualStyleBackColor = true;
+            this.Clear.MouseDown += new System.Windows.Forms.MouseEventHandler(this.clear_MouseDown);
+            // 
             // formGraphicalProgrammingLanguageApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 490);
+            this.Controls.Add(this.Clear);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.richCommandLine);
             this.Controls.Add(this.commandLine);
@@ -178,6 +190,7 @@
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.Button Clear;
     }
 }
 

@@ -86,7 +86,9 @@ namespace GraphicalProgrammingLanguageApplication
                     String instruction = commands[0];
                     int variable1 = int.Parse(commands[1]);
                     int variable2 = int.Parse(commands[2]);
-                   // int variable3 = int.Parse(commands[3]);
+
+                    //hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                   // int sizeGiven = int.Parse(commands[3]);
 
                     if (commands[0].Equals("drawto") == true)
                     {
@@ -115,20 +117,27 @@ namespace GraphicalProgrammingLanguageApplication
 
                     else if (commands[0].Equals("triangle") == true)
                     {
-                        drawTriangle.createTriangle(variable1, variable2);
+                        //hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                        drawTriangle.createTriangle(variable2);
                         Console.WriteLine("Triangle has been drawn");
+                    }
+
+                    //Changes pen color to red
+                    else if (commands[0].Equals("penred") ==true)
+                    {
+                        pictureBoxCanvas.changePenRed();
                     }
 
                     commandLine.Text = "";
                     Refresh();
                 }
                 
-                catch (FormatException i)
+                catch (FormatException)
                 {
                     Console.WriteLine("Invalid parameter");
                 }
 
-                catch (IndexOutOfRangeException i)
+                catch (IndexOutOfRangeException)
                 {
                     Console.WriteLine("Invalid parameter");
                 }
@@ -148,7 +157,9 @@ namespace GraphicalProgrammingLanguageApplication
                     String instruction = commands[0];
                     int variable1 = int.Parse(commands[1]);
                     int variable2 = int.Parse(commands[2]);
-                   // int variable3 = int.Parse(commands[3]);
+
+                    //hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                  //  int sizeGiven = int.Parse(commands[3]);
 
                     if (commands[0].Equals("drawto") == true)
                     {
@@ -169,16 +180,23 @@ namespace GraphicalProgrammingLanguageApplication
                         Console.WriteLine("Square has been drawn");
                     }
 
-            //        else if (commands[0].Equals("circle") == true)
-            //        {
-            //            drawCircle.createCircle(variable1, variable2);
-            //            Console.WriteLine("Circle has been drawn");
-            //        }
+                    else if (commands[0].Equals("circle") == true)
+                    {
+                        drawCircle.createCircle(variable1, variable2);
+                        Console.WriteLine("Circle has been drawn");
+                    }
 
                     else if (commands[0].Equals("triangle") == true)
                     {
-                        drawTriangle.createTriangle(variable1, variable2);
+                        //hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                        drawTriangle.createTriangle(variable2);
                         Console.WriteLine("Triangle has been drawn");
+                    }
+
+                    //Changes pen color to red
+                    else if (commands[0].Equals("penred") == true)
+                    {
+                        pictureBoxCanvas.changePenRed();
                     }
 
                     //Run command
@@ -206,29 +224,22 @@ namespace GraphicalProgrammingLanguageApplication
 
                         }
 
-
                     }
-
-
-
-
-
-
-
-
 
                     commandLine.Text = "";
                     Refresh();
                 }
                 
-                catch (FormatException i)
+                catch (FormatException)
                 {
                     Console.WriteLine("Invalid parameter");
+                   
                 }
 
-                catch (IndexOutOfRangeException i)
+                catch (IndexOutOfRangeException)
                 {
                     Console.WriteLine("Invalid parameter");
+                    
                 }
             }
         }
@@ -245,5 +256,13 @@ namespace GraphicalProgrammingLanguageApplication
             Graphics g = e.Graphics;
             g.DrawImageUnscaled(outputBitmap, 0, 0);
         }
+
+        private void clear_MouseDown(object sender, MouseEventArgs e)
+        {
+        //    pictureBox.clearCanvas();
+        //    Console.WriteLine("samber lightning");
+        }
+
+
     }
 }
