@@ -128,6 +128,14 @@ namespace GraphicalProgrammingLanguageApplication
                         pictureBoxCanvas.changePenRed();
                     }
 
+                    //Changes pen color to blue
+                    else if (commands[0].Equals("penblue") == true)
+                    {
+                        pictureBoxCanvas.changePenBlue();
+                    }
+
+
+
                     commandLine.Text = "";
                     Refresh();
                 }
@@ -198,6 +206,37 @@ namespace GraphicalProgrammingLanguageApplication
                     {
                         pictureBoxCanvas.changePenRed();
                     }
+
+                    //Changes pen color to blue
+                    else if (commands[0].Equals("penblue") == true)
+                    {
+                        pictureBoxCanvas.changePenBlue();
+                    }
+
+
+
+
+
+                    else if (commands[0].Equals("fillon") == true)
+                    {
+                        drawSquare.brushOn();
+                        Console.WriteLine("Brush ON");
+
+                    }
+
+                    else if (commands[0].Equals("filloff") == true)
+                    {
+                        drawSquare.brushOff();
+                        Console.WriteLine("Brush OFF");
+                    }
+
+
+
+
+
+
+
+
 
                     //Run command
                     else if (commands[0].Equals("run") == true)

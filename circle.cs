@@ -12,6 +12,7 @@ namespace GraphicalProgrammingLanguageApplication
         Graphics g;
         Pen p;
         int positionX, positionY;
+        Brush b;
 
         public circle(Graphics g)
         {

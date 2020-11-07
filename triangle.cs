@@ -12,6 +12,7 @@ namespace GraphicalProgrammingLanguageApplication
         Graphics g;
         Pen p;
         int positionX, positionY;
+        Brush b;
 
         public triangle(Graphics g)
         {
