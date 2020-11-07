@@ -21,7 +21,6 @@ namespace GraphicalProgrammingLanguageApplication
             positionX = positionY = 10;
             p = new Pen(Color.Black, 1);
             b = new SolidBrush(Color.LightBlue);
-
         }
 
         public void brushOn()
@@ -33,8 +32,6 @@ namespace GraphicalProgrammingLanguageApplication
         {
             shapeFill = false;
         }
-
-
 
         public void createSquare(int destinationX, int destinationY)
         {

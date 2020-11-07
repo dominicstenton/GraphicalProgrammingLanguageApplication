@@ -47,10 +47,10 @@ namespace GraphicalProgrammingLanguageApplication
             p.Color = Color.Blue;
         }
 
-
-
-
-
+        public void changePenGreen()
+        {
+            p.Color = Color.Green;
+        }
 
         public void FillSquare(PaintEventArgs e, int destinationX, int destinationY)
         {
@@ -58,12 +58,19 @@ namespace GraphicalProgrammingLanguageApplication
             
         }
 
+        public void FillCircle(PaintEventArgs e, int destinationX, int destinationY)
+        {
+            e.Graphics.FillEllipse(b, positionX, positionY, destinationX, destinationY);
+        }
 
 
 
 
-
-
+        Point[] a = { new Point(10, 10), new Point(200, 100), new Point(400, 100) };
+        public void FillTriangle(PaintEventArgs e, int destinationX, int destinationY)
+        {
+            e.Graphics.FillPolygon(b, a);
+        }
 
         public void clearCanvas()
         {
