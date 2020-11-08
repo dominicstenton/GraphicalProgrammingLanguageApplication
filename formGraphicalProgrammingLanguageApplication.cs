@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -52,14 +54,59 @@ namespace GraphicalProgrammingLanguageApplication
         //Open menu item
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+            }
+                OpenFileDialog dlg = new OpenFileDialog();
+            String retProg = richCommandLine.Text;
+            var fileContent = string.Empty;
+            var filePath = string.Empty;
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+               filePath = dlg.FileName;
+
+                var fileStream = dlg.OpenFile();
+
+                using (StreamReader reader = new StreamReader(fileStream))
+                {
+                    fileContent = reader.ReadToEnd();
+
+                    richCommandLine.Text = fileContent;
+                }
+
+            }
 
         }
 
         //Save as... menu item
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SaveFileDialog dlg = new SaveFileDialog();
+            String retProg = richCommandLine.Text;
 
+            List<string> commandLineList = new List<string>(
+                            retProg.Split(new string[] { "\r\n" }, 
+                            StringSplitOptions.RemoveEmptyEntries));
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter writer = new StreamWriter(dlg.FileName);
+
+                for (int i = 0; i < commandLineList.Count; i++)
+                {
+                    writer.WriteLine(commandLineList[i]);
+                }
+
+                writer.Close();
+            }
         }
+
 
         //Exit menu item
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

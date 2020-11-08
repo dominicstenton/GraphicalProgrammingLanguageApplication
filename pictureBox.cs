@@ -64,8 +64,6 @@ namespace GraphicalProgrammingLanguageApplication
         }
 
 
-
-
         Point[] a = { new Point(10, 10), new Point(200, 100), new Point(400, 100) };
         public void FillTriangle(PaintEventArgs e, int destinationX, int destinationY)
         {
