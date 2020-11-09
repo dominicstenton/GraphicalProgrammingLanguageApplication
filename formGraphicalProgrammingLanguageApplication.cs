@@ -33,7 +33,6 @@ namespace GraphicalProgrammingLanguageApplication
         parseRichCommand richCommand;
         parseCommand varCommand;
         
-
         public formGraphicalProgrammingLanguageApplication()
         {
             InitializeComponent();
@@ -129,12 +128,10 @@ namespace GraphicalProgrammingLanguageApplication
                 String command = commandLine.Text.Trim().ToLower();
                 String commandz = richCommandLine.Text.Trim().ToLower();
                 
-  
                     //Run command
                     if (command.Equals("run") == true)
                     {
                         richCommand.parseRich(commandz);
-                        
                     }
 
                     else
@@ -144,7 +141,6 @@ namespace GraphicalProgrammingLanguageApplication
 
                     commandLine.Text = "";
                     Refresh();
- 
             }
         }
 
@@ -166,7 +162,5 @@ namespace GraphicalProgrammingLanguageApplication
             //    pictureBox.clearCanvas();
             //    Console.WriteLine("samber lightning");
         }
-
-
     }
 }

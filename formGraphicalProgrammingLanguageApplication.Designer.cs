@@ -30,7 +30,6 @@
         {
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.commandLine = new System.Windows.Forms.TextBox();
-            this.richCommandLine = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,6 +39,7 @@
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Clear = new System.Windows.Forms.Button();
+            this.richCommandLine = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -63,14 +63,6 @@
             this.commandLine.TabIndex = 1;
             this.commandLine.KeyDown += new System.Windows.Forms.KeyEventHandler(this.commandLine_KeyDown);
             // 
-            // richCommandLine
-            // 
-            this.richCommandLine.Location = new System.Drawing.Point(12, 31);
-            this.richCommandLine.Name = "richCommandLine";
-            this.richCommandLine.Size = new System.Drawing.Size(246, 373);
-            this.richCommandLine.TabIndex = 2;
-            this.richCommandLine.Text = "";
-            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -90,7 +82,7 @@
             this.file});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1016, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1016, 30);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip";
             // 
@@ -153,14 +145,22 @@
             this.Clear.UseVisualStyleBackColor = true;
             this.Clear.MouseDown += new System.Windows.Forms.MouseEventHandler(this.clear_MouseDown);
             // 
+            // richCommandLine
+            // 
+            this.richCommandLine.Location = new System.Drawing.Point(12, 31);
+            this.richCommandLine.Multiline = true;
+            this.richCommandLine.Name = "richCommandLine";
+            this.richCommandLine.Size = new System.Drawing.Size(197, 373);
+            this.richCommandLine.TabIndex = 6;
+            // 
             // formGraphicalProgrammingLanguageApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 490);
+            this.Controls.Add(this.richCommandLine);
             this.Controls.Add(this.Clear);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.richCommandLine);
             this.Controls.Add(this.commandLine);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.menuStrip1);
@@ -179,7 +179,6 @@
 
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.TextBox commandLine;
-        private System.Windows.Forms.RichTextBox richCommandLine;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
@@ -189,6 +188,7 @@
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Button Clear;
+        private System.Windows.Forms.TextBox richCommandLine;
     }
 }
 

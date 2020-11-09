@@ -10,9 +10,7 @@ namespace GraphicalProgrammingLanguageApplication
     {
         pictureBox pictureBoxCanvas;
         parseCommand parseCommander;
-        square drawSquare;
-        circle drawCircle;
-        triangle drawTriangle;
+        
 
         public parseRichCommand(pictureBox pictureBox, parseCommand parseCommand)
         {
