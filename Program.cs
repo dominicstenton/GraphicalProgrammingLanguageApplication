@@ -16,7 +16,7 @@ namespace GraphicalProgrammingLanguageApplication
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new formGraphicalProgrammingLanguageApplication());
+            Application.Run(new FormGraphicalProgrammingLanguageApplication());
         }
     }
 }

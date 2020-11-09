@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace GraphicalProgrammingLanguageApplication
 {
-    class parseRichCommand
+    class ParseRichCommand
     {
-        pictureBox pictureBoxCanvas;
-        parseCommand parseCommander;
+        PictureBox pictureBoxCanvas;
+        ParseCommand parseCommander;
         
-
-        public parseRichCommand(pictureBox pictureBox, parseCommand parseCommand)
+        public ParseRichCommand(PictureBox pictureBox, ParseCommand parseCommand)
         {
             this.pictureBoxCanvas = pictureBox;
             this.parseCommander = parseCommand;

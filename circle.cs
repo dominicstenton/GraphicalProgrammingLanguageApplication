@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GraphicalProgrammingLanguageApplication
 {
-    class circle
+    class Circle
     {
         Graphics g;
         Pen p;
@@ -15,20 +15,20 @@ namespace GraphicalProgrammingLanguageApplication
         Brush b;
         bool shapeFill;
 
-        public circle(Graphics g)
+        public Circle(Graphics g)
         {
             this.g = g;
-            positionX = positionY = 10;
+            positionX = positionY = 0;
             p = new Pen(Color.Black, 1);
             b = new SolidBrush(Color.Yellow);
         }
 
-        public void brushOn()
+        public void BrushOn()
         {
             shapeFill = true;
         }
 
-        public void brushOff()
+        public void BrushOff()
         {
             shapeFill = false;
         }
@@ -39,14 +39,12 @@ namespace GraphicalProgrammingLanguageApplication
             {
                 g.FillEllipse(b, positionX, positionY, radius *2, radius *2);
                 g.DrawEllipse(p, positionX, positionY, radius *2, radius *2);
-                Console.WriteLine("A filled circle has been drawn");
             }
 
             else
             {
                 g.DrawEllipse(p, positionX, positionY, radius * 2, radius * 2);
             }
-            
         }
     }
 }

@@ -20,28 +20,28 @@ using System.Windows.Forms;
 
 namespace GraphicalProgrammingLanguageApplication
 {
-    public partial class formGraphicalProgrammingLanguageApplication : Form
+    public partial class FormGraphicalProgrammingLanguageApplication : Form
     {
         //Size of the form
         static int sizeX = 480;
         static int sizeY = 640;
         Bitmap outputBitmap = new Bitmap(sizeX, sizeY);
-        pictureBox pictureBoxCanvas;
-        square drawSquare;
-        circle drawCircle;
-        triangle drawTriangle;
-        parseRichCommand richCommand;
-        parseCommand varCommand;
+        PictureBox pictureBoxCanvas;
+        Square drawSquare;
+        Circle drawCircle;
+        Triangle drawTriangle;
+        ParseRichCommand richCommand;
+        ParseCommand varCommand;
         
-        public formGraphicalProgrammingLanguageApplication()
+        public FormGraphicalProgrammingLanguageApplication()
         {
             InitializeComponent();
-            pictureBoxCanvas = new pictureBox(Graphics.FromImage(outputBitmap));
-            drawSquare = new square(Graphics.FromImage(outputBitmap));
-            drawCircle = new circle(Graphics.FromImage(outputBitmap));
-            drawTriangle = new triangle(Graphics.FromImage(outputBitmap));
-            varCommand = new parseCommand(pictureBoxCanvas, drawCircle, drawSquare, drawTriangle);
-            richCommand = new parseRichCommand(pictureBoxCanvas, varCommand);
+            pictureBoxCanvas = new PictureBox(Graphics.FromImage(outputBitmap));
+            drawSquare = new Square(Graphics.FromImage(outputBitmap));
+            drawCircle = new Circle(Graphics.FromImage(outputBitmap));
+            drawTriangle = new Triangle(Graphics.FromImage(outputBitmap));
+            varCommand = new ParseCommand(pictureBoxCanvas, drawCircle, drawSquare, drawTriangle);
+            richCommand = new ParseRichCommand(pictureBoxCanvas, varCommand);
 
         }
 
@@ -159,7 +159,7 @@ namespace GraphicalProgrammingLanguageApplication
 
         private void clear_MouseDown(object sender, MouseEventArgs e)
         {
-            //    pictureBox.clearCanvas();
+               // PictureBox.clear();
             //    Console.WriteLine("samber lightning");
         }
     }

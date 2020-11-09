@@ -9,33 +9,29 @@ using System.Windows.Forms;
 namespace GraphicalProgrammingLanguageApplication
 {
 
-   public class pictureBox
+   public class PictureBox
     {
         Graphics g;
         Pen p;
         Brush b;
         int positionX;
         int positionY;
-        int destinationX = 10;
-        int destinationY = 10;
         bool testing;
 
-
-        public pictureBox(Graphics g)
+        public PictureBox(Graphics g)
         {
             this.g = g;
-            positionX = positionY = 10;
+            positionX = positionY = 0;
             p = new Pen(Color.Black, 1);
-
         }
 
         //TEST
-        public pictureBox()
+        public PictureBox()
             {
             testing = true;
             }
 
-        //Line being draw to the pictureBox
+        //Line being draw to the PictureBox
         public void drawLine(int destinationX, int destinationY)
         {
             g.DrawLine(p, positionX, positionY, destinationX, destinationY);
@@ -49,25 +45,23 @@ namespace GraphicalProgrammingLanguageApplication
             }
         }
 
-    
-        public void moveLine(int destinationX, int destinationY)
+        public void MoveLine(int destinationX, int destinationY)
         {
             positionX = destinationX;
             positionY = destinationY;
-
         }
 
-        public void changePenRed()
+        public void ChangePenRed()
         {
             p.Color = Color.Red;
         }
 
-        public void changePenBlue()
+        public void ChangePenBlue()
         {
             p.Color = Color.Blue;
         }
 
-        public void changePenGreen()
+        public void ChangePenGreen()
         {
             p.Color = Color.Green;
         }
@@ -83,24 +77,22 @@ namespace GraphicalProgrammingLanguageApplication
             e.Graphics.FillEllipse(b, positionX, positionY, destinationX, destinationY);
         }
 
-
-        Point[] a = { new Point(10, 10), new Point(200, 100), new Point(400, 100) };
         public void FillTriangle(PaintEventArgs e, int destinationX, int destinationY)
         {
+            Point[] a = { new Point(10, 10), new Point(200, 100), new Point(400, 100) };
             e.Graphics.FillPolygon(b, a);
         }
 
-        public void clearCanvas()
+        public void ClearCanvas()
         {
-          //  g.Clear(Color.Black);
-
+           g.Clear(Color.Transparent);
         }
 
-        public void resetPen(int destinationX, int destinationY)
+        //FIX
+        public void ResetPen(int destinationX, int destinationY)
         {
             destinationX = 0;
             destinationY = 0;
-
             positionX = destinationX;
             positionY = destinationY;
         }

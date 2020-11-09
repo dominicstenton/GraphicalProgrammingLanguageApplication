@@ -1,6 +1,6 @@
 ﻿namespace GraphicalProgrammingLanguageApplication
 {
-    partial class formGraphicalProgrammingLanguageApplication
+    partial class FormGraphicalProgrammingLanguageApplication
     {
         /// <summary>
         /// Required designer variable.
@@ -44,10 +44,10 @@
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pictureBox
+            // PictureBox
             // 
             this.pictureBox.Location = new System.Drawing.Point(264, 31);
-            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Name = "PictureBox";
             this.pictureBox.Size = new System.Drawing.Size(733, 373);
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
@@ -82,7 +82,7 @@
             this.file});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1016, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1016, 28);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip";
             // 
@@ -150,10 +150,10 @@
             this.richCommandLine.Location = new System.Drawing.Point(12, 31);
             this.richCommandLine.Multiline = true;
             this.richCommandLine.Name = "richCommandLine";
-            this.richCommandLine.Size = new System.Drawing.Size(197, 373);
+            this.richCommandLine.Size = new System.Drawing.Size(246, 373);
             this.richCommandLine.TabIndex = 6;
             // 
-            // formGraphicalProgrammingLanguageApplication
+            // FormGraphicalProgrammingLanguageApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -165,7 +165,7 @@
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "formGraphicalProgrammingLanguageApplication";
+            this.Name = "FormGraphicalProgrammingLanguageApplication";
             this.Text = "Graphical Programming Language Application";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.menuStrip1.ResumeLayout(false);

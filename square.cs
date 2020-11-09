@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GraphicalProgrammingLanguageApplication
 {
-   public class square
+   public class Square
     {
         Graphics g;
         Pen p;
@@ -15,7 +15,7 @@ namespace GraphicalProgrammingLanguageApplication
         Brush b;
         bool shapeFill;
 
-        public square(Graphics g)
+        public Square(Graphics g)
         {
             this.g = g;
             positionX = positionY = 10;
@@ -23,12 +23,12 @@ namespace GraphicalProgrammingLanguageApplication
             b = new SolidBrush(Color.LightBlue);
         }
 
-        public void brushOn()
+        public void BrushOn()
         {
             shapeFill = true;
         }
 
-        public void brushOff()
+        public void BrushOff()
         {
             shapeFill = false;
         }
@@ -40,14 +40,14 @@ namespace GraphicalProgrammingLanguageApplication
             {
                 g.FillRectangle(b, positionX, positionY, positionX + destinationX, positionY + destinationY);
                 g.DrawRectangle(p, positionX, positionY, positionX + destinationX, positionY + destinationY);
+              //  Console.WriteLine("A filled Square has been drawn!");
             }
 
             else
             {
                 g.DrawRectangle(p, positionX, positionY, positionX + destinationX, positionY + destinationY);
+               // Console.WriteLine("A Square has been drawn!");
             }
-           
-
         }
     }
 }

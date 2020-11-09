@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace GraphicalProgrammingLanguageApplication
 {
-    class parseCommand
+    class ParseCommand
     {
-        pictureBox pictureBoxCanvas;
-        square drawSquare;
-        circle drawCircle;
-        triangle drawTriangle;
+        PictureBox pictureBoxCanvas;
+        Square drawSquare;
+        Circle drawCircle;
+        Triangle drawTriangle;
 
-        public parseCommand(pictureBox pictureBox, circle drawCircle, square drawSquare, triangle drawTriangle)
+        public ParseCommand(PictureBox pictureBox, Circle drawCircle, Square drawSquare, Triangle drawTriangle)
         {
             this.pictureBoxCanvas = pictureBox;
             this.drawCircle = drawCircle;
@@ -27,9 +27,7 @@ namespace GraphicalProgrammingLanguageApplication
             string instruction = "default";
             int variable1 = 0;
             int variable2 = 0;
-
             input = input.Trim().ToLower();
-
             List<string> loadVar = new List<string>(
                 input.Split(new string[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries));
 
@@ -39,7 +37,6 @@ namespace GraphicalProgrammingLanguageApplication
                 {
                     instruction = loadVar[q];
                    // Console.WriteLine(instruction);
-
                 }
 
                 else if (q == 1)
@@ -47,16 +44,13 @@ namespace GraphicalProgrammingLanguageApplication
                     try
                     {
                         variable1 = int.Parse(loadVar[q]);
-                        Console.WriteLine(instruction + " " + variable1);
-                        
+                        //Console.WriteLine(instruction + " " + variable1);
                     }
 
                     catch (FormatException)
                     {
-                        Console.WriteLine("error here val1");
-                      
+                        Console.WriteLine("This is an invalid command");
                     }
-
                 }
 
                 else if (q == 2)
@@ -68,14 +62,13 @@ namespace GraphicalProgrammingLanguageApplication
                     }
                     catch
                     {
-                        Console.WriteLine("error here val2");
+                        Console.WriteLine("This is an invalid command");
                     }
-
                 }
 
                 else
                 {
-                    Console.Write("Erro8r");
+                    Console.Write("Error");
                 }
             }
 
@@ -84,88 +77,86 @@ namespace GraphicalProgrammingLanguageApplication
                 if (instruction.Equals("drawto") == true)
                 {
                     pictureBoxCanvas.drawLine(variable1, variable2);
-                    Console.WriteLine("Line has been drawn");
-
+                    Console.WriteLine("You have drawn a line with the value of " + variable1 + " & " + variable2);
                 }
 
                 else if (instruction.Equals("moveto") == true)
                 {
-                    pictureBoxCanvas.moveLine(variable1, variable2);
-                    Console.WriteLine("You have moved the pen position");
+                    pictureBoxCanvas.MoveLine(variable1, variable2);
+                    Console.WriteLine("You have moved the pen to position " + variable1 + " & " + variable2);
                 }
 
                 else if (instruction.Equals("rect") == true)
                 {
                     drawSquare.createSquare(variable1, variable2);
-                    Console.WriteLine("Square has been drawn");
+                    Console.WriteLine("A Square has been drawn with the value of " + variable1 +  " & " + variable2);
                 }
 
                 else if (instruction.Equals("circle") == true)
                 {
                     drawCircle.createCircle(variable1);
-                    //Console.WriteLine("Circle has been drawn");
+                    Console.WriteLine("A Circle has been drawn with the value of " + variable1);
                 }
 
                 else if (instruction.Equals("triangle") == true)
                 {
-                    drawTriangle.createTriangle(variable1, variable2);
-                    Console.WriteLine("Triangle has been drawn");
+                    drawTriangle.CreateTriangle();
+                    Console.WriteLine("A Triangle has been drawn with the value of " + variable1 + " & " + variable2);
                 }
 
                 //Changes pen color to red
                 else if (instruction.Equals("penred") == true)
                 {
-                    pictureBoxCanvas.changePenRed();
+                    pictureBoxCanvas.ChangePenRed();
+                    Console.WriteLine("You have changed your Pen color to Red!");
                 }
 
                 //Changes pen color to blue
                 else if (instruction.Equals("penblue") == true)
                 {
-                    pictureBoxCanvas.changePenBlue();
+                    pictureBoxCanvas.ChangePenBlue();
+                    Console.WriteLine("You have changed your Pen color to Blue!");
                 }
 
                 //Changes pen color to green
                 else if (instruction.Equals("pengreen") == true)
                 {
-                    pictureBoxCanvas.changePenGreen();
+                    pictureBoxCanvas.ChangePenGreen();
+                    Console.WriteLine("You have changed your Pen color to Green!");
                 }
 
                 else if (instruction.Equals("fillon") == true)
                 {
-                    drawSquare.brushOn();
-                    drawCircle.brushOn();
-                    drawTriangle.brushOn();
-                    Console.WriteLine("Brush ON");
-
+                    drawSquare.BrushOn();
+                    drawCircle.BrushOn();
+                    drawTriangle.BrushOn();
+                    Console.WriteLine("Fill shape command is now activated");
                 }
 
                 else if (instruction.Equals("filloff") == true)
                 {
-                    drawSquare.brushOff();
-                    drawCircle.brushOff();
-                    drawTriangle.brushOff();
-                    Console.WriteLine("Brush OFF");
+                    drawSquare.BrushOff();
+                    drawCircle.BrushOff();
+                    drawTriangle.BrushOff();
+                    Console.WriteLine("The Fill command is now deactivated");
                 }
 
                 else if (instruction.Equals("reset") == true)
                 {
-                    pictureBoxCanvas.resetPen(0, 0);
-                    Console.WriteLine("Reset");
+                    pictureBoxCanvas.ResetPen(0, 0);
+                    Console.WriteLine("You have Reset your Pen position!");
                 }
 
                 else if (instruction.Equals("clear") == true)
                 {
-                    pictureBoxCanvas.clearCanvas();
-                    Console.WriteLine("Canvas Cleared");
+                    pictureBoxCanvas.ClearCanvas();
+                    Console.WriteLine("You have cleared your canvas!");
                 }
-
             }
             catch (ArgumentException)
             {
-                Console.WriteLine("Com");
+                Console.WriteLine("Error");
             }
-
             }
         }
-
     }
