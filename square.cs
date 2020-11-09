@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GraphicalProgrammingLanguageApplication
 {
-    class square
+   public class square
     {
         Graphics g;
         Pen p;
@@ -35,6 +35,7 @@ namespace GraphicalProgrammingLanguageApplication
 
         public void createSquare(int destinationX, int destinationY)
         {
+
             if (shapeFill == true)
             {
                 g.FillRectangle(b, positionX, positionY, positionX + destinationX, positionY + destinationY);

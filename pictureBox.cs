@@ -8,21 +8,32 @@ using System.Windows.Forms;
 
 namespace GraphicalProgrammingLanguageApplication
 {
-    class pictureBox
+
+   public class pictureBox
     {
         Graphics g;
         Pen p;
         Brush b;
-        int positionX, positionY;
-        
+        int positionX;
+        int positionY;
+        int destinationX = 10;
+        int destinationY = 10;
+        bool testing;
+
 
         public pictureBox(Graphics g)
         {
             this.g = g;
             positionX = positionY = 10;
             p = new Pen(Color.Black, 1);
-            
+
         }
+
+        //TEST
+        public pictureBox()
+            {
+            testing = true;
+            }
 
         //Line being draw to the pictureBox
         public void drawLine(int destinationX, int destinationY)
@@ -30,12 +41,20 @@ namespace GraphicalProgrammingLanguageApplication
             g.DrawLine(p, positionX, positionY, destinationX, destinationY);
             positionX = destinationX;
             positionY = destinationY;
+
+            //TEST
+            if (testing == false)
+            {
+                g.DrawLine(p, positionX, positionY, destinationX, destinationY);
+            }
         }
 
+    
         public void moveLine(int destinationX, int destinationY)
         {
             positionX = destinationX;
             positionY = destinationY;
+
         }
 
         public void changePenRed()

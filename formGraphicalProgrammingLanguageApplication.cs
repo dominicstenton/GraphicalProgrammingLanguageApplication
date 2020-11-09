@@ -158,7 +158,7 @@ namespace GraphicalProgrammingLanguageApplication
         private void pictureBox_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            g.DrawImageUnscaled(outputBitmap, 0, 0);
+            g.DrawImageUnscaled(outputBitmap, 100, 100);
         }
 
         private void clear_MouseDown(object sender, MouseEventArgs e)
