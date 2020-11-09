@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -29,6 +30,9 @@ namespace GraphicalProgrammingLanguageApplication
         square drawSquare;
         circle drawCircle;
         triangle drawTriangle;
+        parseRichCommand richCommand;
+        parseCommand varCommand;
+        
 
         public formGraphicalProgrammingLanguageApplication()
         {
@@ -37,18 +41,16 @@ namespace GraphicalProgrammingLanguageApplication
             drawSquare = new square(Graphics.FromImage(outputBitmap));
             drawCircle = new circle(Graphics.FromImage(outputBitmap));
             drawTriangle = new triangle(Graphics.FromImage(outputBitmap));
-        }
-
-        //File menu button being clicked (tool strip menu item)
-        private void file_Click(object sender, EventArgs e)
-        {
+            varCommand = new parseCommand(pictureBoxCanvas, drawCircle, drawSquare, drawTriangle);
+            richCommand = new parseRichCommand(pictureBoxCanvas, varCommand);
 
         }
 
         //New menu item
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+  
+                   
         }
 
         //Open menu item
@@ -107,7 +109,6 @@ namespace GraphicalProgrammingLanguageApplication
             }
         }
 
-
         //Exit menu item
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -120,240 +121,30 @@ namespace GraphicalProgrammingLanguageApplication
             MessageBox.Show("An application used to simulate a programming language for educational purposes.");
         }
 
-        //Rich command line awaiting use (rich textbox)
-        private void richCommandLine_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                String command = richCommandLine.Text.Trim().ToLower();
-                String[] commands = command.Split(' ', ',');
-
-                try
-                {
-                    String instruction = commands[0];
-                    int variable1 = int.Parse(commands[1]);
-                    int variable2 = int.Parse(commands[2]);
-
-                    if (commands[0].Equals("drawto") == true)
-                    {
-                        pictureBoxCanvas.drawLine(variable1, variable2);
-                        Console.WriteLine("Line has been drawn");
-
-                    }
-
-                    else if (commands[0].Equals("moveto") == true)
-                    {
-                        pictureBoxCanvas.moveLine(variable1, variable2);
-                        Console.WriteLine("You have moved the pen position");
-                    }
-
-                    else if (commands[0].Equals("square") == true)
-                    {
-                        drawSquare.createSquare(variable1, variable2);
-                        Console.WriteLine("Square has been drawn");
-                    }
-
-                    else if (commands[0].Equals("circle") == true)
-                    {
-                        drawCircle.createCircle(variable1, variable2);
-                        Console.WriteLine("Circle has been drawn");
-                    }
-
-                    else if (commands[0].Equals("triangle") == true)
-                    {
-
-                        drawTriangle.createTriangle(variable1, variable2);
-                        Console.WriteLine("Triangle has been drawn");
-                    }
-
-                    //Changes pen color to red
-                    else if (commands[0].Equals("penred") == true)
-                    {
-                        pictureBoxCanvas.changePenRed();
-                    }
-
-                    //Changes pen color to blue
-                    else if (commands[0].Equals("penblue") == true)
-                    {
-                        pictureBoxCanvas.changePenBlue();
-                    }
-
-                    //Changes pen color to green
-                    else if (commands[0].Equals("pengreen") == true)
-                    {
-                        pictureBoxCanvas.changePenGreen();
-                    }
-
-                    else if (commands[0].Equals("fillon") == true)
-                    {
-                        drawSquare.brushOn();
-                        Console.WriteLine("Brush ON");
-
-                    }
-
-                    else if (commands[0].Equals("filloff") == true)
-                    {
-                        drawSquare.brushOff();
-                        Console.WriteLine("Brush OFF");
-                    }
-
-
-                    commandLine.Text = "";
-                    Refresh();
-                }
-
-                catch (FormatException)
-                {
-                    Console.WriteLine("Invalid parameter");
-                }
-
-                catch (IndexOutOfRangeException)
-                {
-                    Console.WriteLine("Invalid parameter");
-                }
-            }
-        }
-
         //Command line awaiting use (textbox)
         private void commandLine_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 String command = commandLine.Text.Trim().ToLower();
-                String[] commands = command.Split(' ', ',');
-
-                try 
-                {
-                    String instruction = commands[0];
-                    int variable1 = int.Parse(commands[1]);
-                    int variable2 = int.Parse(commands[2]);
-
-                    if (commands[0].Equals("drawto") == true)
-                    {
-                        pictureBoxCanvas.drawLine(variable1, variable2);
-                        Console.WriteLine("Line has been drawn");
-
-                    }
-
-                    else if (commands[0].Equals("moveto") == true)
-                    {
-                        pictureBoxCanvas.moveLine(variable1, variable2);
-                        Console.WriteLine("You have moved the pen position");
-                    }
-
-                    else if (commands[0].Equals("square") == true)
-                    {
-                        drawSquare.createSquare(variable1, variable2);
-                        Console.WriteLine("Square has been drawn");
-                    }
-
-                    else if (commands[0].Equals("circle") == true)
-                    {
-                        drawCircle.createCircle(variable1, variable2);
-                        Console.WriteLine("Circle has been drawn");
-                    }
-
-                    else if (commands[0].Equals("triangle") == true)
-                    {
-                        drawTriangle.createTriangle(variable1, variable2);
-                        Console.WriteLine("Triangle has been drawn");
-                    }
-
-                    //Changes pen color to red
-                    else if (commands[0].Equals("penred") == true)
-                    {
-                        pictureBoxCanvas.changePenRed();
-                    }
-
-                    //Changes pen color to blue
-                    else if (commands[0].Equals("penblue") == true)
-                    {
-                        pictureBoxCanvas.changePenBlue();
-                    }
-
-                    //Changes pen color to green
-                    else if (commands[0].Equals("pengreen") == true)
-                    {
-                        pictureBoxCanvas.changePenGreen();
-                    }
-
-                    else if (commands[0].Equals("fillon") == true)
-                    {
-                        drawSquare.brushOn();
-                        drawCircle.brushOn();
-                        drawTriangle.brushOn();
-                        Console.WriteLine("Brush ON");
-
-
-                    }
-
-                    else if (commands[0].Equals("filloff") == true)
-                    {
-                        drawSquare.brushOff();
-                        drawCircle.brushOff();
-                        drawTriangle.brushOff();
-                        Console.WriteLine("Brush OFF");
-                    }
-
+                String commandz = richCommandLine.Text.Trim().ToLower();
+                
+  
                     //Run command
-                    else if (commands[0].Equals("run") == true)
+                    if (command.Equals("run") == true)
                     {
-                        //o = order
-                        string o = richCommandLine.Text;
+                        richCommand.parseRich(commandz);
+                        
+                    }
 
-                        List<string> commandLineList = new List<string>(
-                            o.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries));
-
-                        foreach (string order in commandLineList)
-                        {
-                            String[] orders = order.Split(' ', ',');
-
-                            String instruct = orders[0];
-                            int order1 = int.Parse(orders[1]);
-                            int order2 = int.Parse(orders[2]);
-
-                            if (instruct.Equals("drawto") == true)
-                            {
-                                pictureBoxCanvas.drawLine(order1, order2);
-                                Console.WriteLine("Line has been drawn");
-                            }
-
-                            else if (instruct.Equals("moveto") == true)
-                            {
-                                pictureBoxCanvas.moveLine(order1, order2);
-                                Console.WriteLine("You have moved the pen position");
-                            }
-
-                            else if (instruct.Equals("circle") == true)
-                            {
-                                drawCircle.createCircle(order1, order2);
-                                Console.WriteLine("Circle has been drawn");
-
-                            }
-
-                            else if (instruct.Equals("square") == true)
-                            {
-                                drawSquare.createSquare(order1, order2);
-                                Console.WriteLine("Square has been drawn");
-                            }
-
-                        }
-
+                    else
+                    {
+                        varCommand.Parse(command);
                     }
 
                     commandLine.Text = "";
                     Refresh();
-                }
-
-                catch (FormatException)
-                {
-                    Console.WriteLine("Invalid parameter");
-                }
-
-                catch (IndexOutOfRangeException)
-                {
-                    Console.WriteLine("Invalid parameter");
-                }
+ 
             }
         }
 

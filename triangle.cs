@@ -18,9 +18,9 @@ namespace GraphicalProgrammingLanguageApplication
         public triangle(Graphics g)
         {
             this.g = g;
-            positionX = positionY = 50;
+            positionX = positionY = 10;
             p = new Pen(Color.Black, 1);
-            b = new SolidBrush(Color.LightBlue);
+            b = new SolidBrush(Color.Tomato);
         }
 
         public void brushOn()
@@ -42,7 +42,7 @@ namespace GraphicalProgrammingLanguageApplication
             {
                 g.FillPolygon(b, a);
                 g.DrawPolygon(p, a);
-                Console.WriteLine("Here");
+                Console.WriteLine("A filled triangle has been drawn");
             }
 
             else

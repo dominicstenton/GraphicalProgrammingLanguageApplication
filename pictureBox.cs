@@ -14,13 +14,14 @@ namespace GraphicalProgrammingLanguageApplication
         Pen p;
         Brush b;
         int positionX, positionY;
+        
 
         public pictureBox(Graphics g)
         {
             this.g = g;
             positionX = positionY = 10;
             p = new Pen(Color.Black, 1);
-            b = new SolidBrush(Color.Yellow);
+            
         }
 
         //Line being draw to the pictureBox
@@ -74,6 +75,15 @@ namespace GraphicalProgrammingLanguageApplication
         {
           //  g.Clear(Color.Black);
 
+        }
+
+        public void resetPen(int destinationX, int destinationY)
+        {
+            destinationX = 0;
+            destinationY = 0;
+
+            positionX = destinationX;
+            positionY = destinationY;
         }
     }
 }

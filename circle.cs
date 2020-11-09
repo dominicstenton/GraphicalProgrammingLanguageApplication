@@ -20,7 +20,7 @@ namespace GraphicalProgrammingLanguageApplication
             this.g = g;
             positionX = positionY = 10;
             p = new Pen(Color.Black, 1);
-            b = new SolidBrush(Color.LightBlue);
+            b = new SolidBrush(Color.Yellow);
         }
 
         public void brushOn()
@@ -33,18 +33,18 @@ namespace GraphicalProgrammingLanguageApplication
             shapeFill = false;
         }
 
-        public void createCircle(int destinationX, int destinationY)
+        public void createCircle(int radius)
         {
             if (shapeFill == true)
             {
-                g.FillEllipse(b, positionX, positionY, destinationX, destinationY);
-                g.DrawEllipse(p, positionX, positionY, destinationX, destinationY);
-                Console.WriteLine("Here");
+                g.FillEllipse(b, positionX, positionY, radius *2, radius *2);
+                g.DrawEllipse(p, positionX, positionY, radius *2, radius *2);
+                Console.WriteLine("A filled circle has been drawn");
             }
 
             else
             {
-                g.DrawEllipse(p, positionX, positionY, destinationX, destinationY);
+                g.DrawEllipse(p, positionX, positionY, radius * 2, radius * 2);
             }
             
         }

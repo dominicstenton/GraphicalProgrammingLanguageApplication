@@ -70,7 +70,6 @@
             this.richCommandLine.Size = new System.Drawing.Size(246, 373);
             this.richCommandLine.TabIndex = 2;
             this.richCommandLine.Text = "";
-            this.richCommandLine.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richCommandLine_KeyDown);
             // 
             // button1
             // 
@@ -115,7 +114,6 @@
             this.file.Name = "file";
             this.file.Size = new System.Drawing.Size(50, 24);
             this.file.Text = "File";
-            this.file.Click += new System.EventHandler(this.file_Click);
             // 
             // newToolStripMenuItem
             // 
