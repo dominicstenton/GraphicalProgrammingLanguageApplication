@@ -25,6 +25,7 @@ namespace GraphicalProgrammingLanguageApplication
         //Size of the form
         static int sizeX = 480;
         static int sizeY = 640;
+
         Bitmap outputBitmap = new Bitmap(sizeX, sizeY);
         PictureBox pictureBoxCanvas;
         Square drawSquare;
@@ -35,6 +36,7 @@ namespace GraphicalProgrammingLanguageApplication
         
         public FormGraphicalProgrammingLanguageApplication()
         {
+            //Initialization section where other classes are called
             InitializeComponent();
             pictureBoxCanvas = new PictureBox(Graphics.FromImage(outputBitmap));
             drawSquare = new Square(Graphics.FromImage(outputBitmap));
@@ -45,14 +47,13 @@ namespace GraphicalProgrammingLanguageApplication
 
         }
 
-        //New menu item
+        //New menu item (Incomplete)
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
   
-                   
         }
 
-        //Open menu item
+        //Open menu item allowing the user to open/import a text file
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -71,21 +72,16 @@ namespace GraphicalProgrammingLanguageApplication
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                filePath = dlg.FileName;
-
                 var fileStream = dlg.OpenFile();
-
                 using (StreamReader reader = new StreamReader(fileStream))
                 {
                     fileContent = reader.ReadToEnd();
-
                     richCommandLine.Text = fileContent;
                 }
-
             }
-
         }
 
-        //Save as... menu item
+        //Save as... menu item allowing the user to save a text file of the application
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog dlg = new SaveFileDialog();
@@ -108,7 +104,7 @@ namespace GraphicalProgrammingLanguageApplication
             }
         }
 
-        //Exit menu item
+        //Exit menu item allowing the user to exit the program
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -120,23 +116,23 @@ namespace GraphicalProgrammingLanguageApplication
             MessageBox.Show("An application used to simulate a programming language for educational purposes.");
         }
 
-        //Command line awaiting use (textbox)
+        //Command line waiting to be called (textbox)
         private void commandLine_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                String command = commandLine.Text.Trim().ToLower();
-                String commandz = richCommandLine.Text.Trim().ToLower();
+                String direct = commandLine.Text.Trim().ToLower();
+                String charge = richCommandLine.Text.Trim().ToLower();
                 
                     //Run command
-                    if (command.Equals("run") == true)
+                    if (direct.Equals("run") == true)
                     {
-                        richCommand.parseRich(commandz);
+                        richCommand.parseRich(charge);
                     }
 
                     else
                     {
-                        varCommand.Parse(command);
+                        varCommand.Parse(direct);
                     }
 
                     commandLine.Text = "";
@@ -144,23 +140,23 @@ namespace GraphicalProgrammingLanguageApplication
             }
         }
 
-        //Run button being clicked (button)
+        //Run button being clicked (incomplete)
         private void buttonRun_Click(object sender, EventArgs e)
         {
 
-
         }
 
+        //Canvas being given an initial position to hold
         private void pictureBox_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            g.DrawImageUnscaled(outputBitmap, 100, 100);
+            g.DrawImageUnscaled(outputBitmap, 0, 0);
         }
 
+        //Clear button (incomplete)
         private void clear_MouseDown(object sender, MouseEventArgs e)
         {
-               // PictureBox.clear();
-            //    Console.WriteLine("samber lightning");
+
         }
     }
 }

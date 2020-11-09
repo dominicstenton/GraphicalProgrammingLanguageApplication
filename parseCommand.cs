@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GraphicalProgrammingLanguageApplication
 {
-    class ParseCommand
+    public class ParseCommand
     {
         PictureBox pictureBoxCanvas;
         Square drawSquare;
@@ -19,24 +19,23 @@ namespace GraphicalProgrammingLanguageApplication
             this.drawCircle = drawCircle;
             this.drawSquare = drawSquare;
             this.drawTriangle = drawTriangle;
-
         }
 
-        public void Parse(string input)
+        public void Parse(string load)
         {
             string instruction = "default";
             int variable1 = 0;
             int variable2 = 0;
-            input = input.Trim().ToLower();
+            load = load.Trim().ToLower();
             List<string> loadVar = new List<string>(
-                input.Split(new string[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries));
+                load.Split(new string[] { ",", " " }, 
+                StringSplitOptions.RemoveEmptyEntries));
 
             for (int q = 0; q < loadVar.Count; q++)
             {
                 if (q == 0)
                 {
                     instruction = loadVar[q];
-                   // Console.WriteLine(instruction);
                 }
 
                 else if (q == 1)
@@ -44,7 +43,6 @@ namespace GraphicalProgrammingLanguageApplication
                     try
                     {
                         variable1 = int.Parse(loadVar[q]);
-                        //Console.WriteLine(instruction + " " + variable1);
                     }
 
                     catch (FormatException)
@@ -58,7 +56,6 @@ namespace GraphicalProgrammingLanguageApplication
                     try
                     {
                         variable2 = int.Parse(loadVar[q]);
-                        Console.WriteLine(instruction + " " + variable1 + " " + variable2);
                     }
                     catch
                     {
@@ -151,6 +148,11 @@ namespace GraphicalProgrammingLanguageApplication
                 {
                     pictureBoxCanvas.ClearCanvas();
                     Console.WriteLine("You have cleared your canvas!");
+                }
+
+                else
+                {
+                    Console.WriteLine("This is an invalid command");
                 }
             }
             catch (ArgumentException)

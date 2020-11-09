@@ -44,10 +44,10 @@
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // PictureBox
+            // pictureBox
             // 
             this.pictureBox.Location = new System.Drawing.Point(264, 31);
-            this.pictureBox.Name = "PictureBox";
+            this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(733, 373);
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
@@ -137,7 +137,7 @@
             // 
             // Clear
             // 
-            this.Clear.Location = new System.Drawing.Point(304, 441);
+            this.Clear.Location = new System.Drawing.Point(264, 442);
             this.Clear.Name = "Clear";
             this.Clear.Size = new System.Drawing.Size(202, 34);
             this.Clear.TabIndex = 5;

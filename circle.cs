@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GraphicalProgrammingLanguageApplication
 {
-    class Circle
+    public class Circle
     {
         Graphics g;
         Pen p;
@@ -18,21 +18,24 @@ namespace GraphicalProgrammingLanguageApplication
         public Circle(Graphics g)
         {
             this.g = g;
-            positionX = positionY = 0;
-            p = new Pen(Color.Black, 1);
+            positionX = positionY = 10;
+            p = new Pen(Color.Black, 3);
             b = new SolidBrush(Color.Yellow);
         }
 
+        //Fill shape enabled
         public void BrushOn()
         {
             shapeFill = true;
         }
 
+        //Fill shape disabled
         public void BrushOff()
         {
             shapeFill = false;
         }
 
+        //Circle being generated
         public void createCircle(int radius)
         {
             if (shapeFill == true)

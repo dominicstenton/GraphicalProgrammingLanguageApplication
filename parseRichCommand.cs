@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace GraphicalProgrammingLanguageApplication
 {
-    class ParseRichCommand
+    public class ParseRichCommand
     {
         PictureBox pictureBoxCanvas;
-        ParseCommand parseCommander;
+        ParseCommand parseTell;
         
         public ParseRichCommand(PictureBox pictureBox, ParseCommand parseCommand)
         {
             this.pictureBoxCanvas = pictureBox;
-            this.parseCommander = parseCommand;
+            this.parseTell = parseCommand;
         }
 
         public void parseRich(string commands)
@@ -24,7 +24,7 @@ namespace GraphicalProgrammingLanguageApplication
 
             foreach (string input in commandList)
             {
-                parseCommander.Parse(input);
+                parseTell.Parse(input);
             }
         }
     }

@@ -19,34 +19,34 @@ namespace GraphicalProgrammingLanguageApplication
         {
             this.g = g;
             positionX = positionY = 10;
-            p = new Pen(Color.Black, 1);
+            p = new Pen(Color.Black, 3);
             b = new SolidBrush(Color.LightBlue);
         }
 
+        //Fill shape enabled
         public void BrushOn()
         {
             shapeFill = true;
         }
 
+        //Fill shape disabled
         public void BrushOff()
         {
             shapeFill = false;
         }
 
-        public void createSquare(int destinationX, int destinationY)
+        //Square being generated
+        public void createSquare(int width, int length)
         {
-
             if (shapeFill == true)
             {
-                g.FillRectangle(b, positionX, positionY, positionX + destinationX, positionY + destinationY);
-                g.DrawRectangle(p, positionX, positionY, positionX + destinationX, positionY + destinationY);
-              //  Console.WriteLine("A filled Square has been drawn!");
+                g.FillRectangle(b, positionX, positionY, width, length);
+                g.DrawRectangle(p, positionX, positionY, width, length);
             }
 
             else
             {
-                g.DrawRectangle(p, positionX, positionY, positionX + destinationX, positionY + destinationY);
-               // Console.WriteLine("A Square has been drawn!");
+                g.DrawRectangle(p, positionX, positionY, width, length);
             }
         }
     }

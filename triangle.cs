@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GraphicalProgrammingLanguageApplication
 {
-    class Triangle
+    public class Triangle
     {
         Graphics g;
         Pen p;
@@ -17,20 +17,23 @@ namespace GraphicalProgrammingLanguageApplication
         public Triangle(Graphics g)
         {
             this.g = g;
-            p = new Pen(Color.Black, 1);
+            p = new Pen(Color.Black, 3);
             b = new SolidBrush(Color.Tomato);
         }
 
+        //Fill shape enabled
         public void BrushOn()
         {
             shapeFill = true;
         }
 
+        //Fill shape disabled
         public void BrushOff()
         {
             shapeFill = false;
         }
 
+        //Triangle being generated
         public void CreateTriangle()
         {
             Point[] a = { new Point(50, 10), new Point(100, 50), new Point(200, 50) };
