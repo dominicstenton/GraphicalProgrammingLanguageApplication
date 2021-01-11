@@ -10,6 +10,7 @@ namespace GraphicalProgrammingLanguageApplication
     {
         PictureBox pictureBoxCanvas;
         ParseCommand parseTell;
+        string equals = "=";
         
         public ParseRichCommand(PictureBox pictureBox, ParseCommand parseCommand)
         {
@@ -24,7 +25,15 @@ namespace GraphicalProgrammingLanguageApplication
 
             foreach (string input in commandList)
             {
-                parseTell.Parse(input);
+                if (input.Contains(equals) == true)
+                {
+
+                }
+                else
+                {
+                    parseTell.Parse(input);
+                }
+              
             }
         }
     }

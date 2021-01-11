@@ -49,6 +49,7 @@
     <Compile Include="Circle.cs" />
     <Compile Include="ParseCommand.cs" />
     <Compile Include="ParseRichCommand.cs" />
+    <Compile Include="ParseVariableCommand.cs" />
     <Compile Include="Square.cs" />
     <Compile Include="PictureBox.cs" />
     <Compile Include="FormGraphicalProgrammingLanguageApplication.cs">
