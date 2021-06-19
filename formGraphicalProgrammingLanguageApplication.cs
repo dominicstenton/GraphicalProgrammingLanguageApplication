@@ -47,10 +47,13 @@ namespace GraphicalProgrammingLanguageApplication
 
         }
 
-        //New menu item (Incomplete)
+        //New menu item
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-  
+            FormGraphicalProgrammingLanguageApplication myForm = new FormGraphicalProgrammingLanguageApplication();
+            this.Hide();
+            myForm.ShowDialog();
+            this.Close();
         }
 
         //Open menu item allowing the user to open/import a text file
