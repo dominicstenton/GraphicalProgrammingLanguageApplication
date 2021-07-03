@@ -15,6 +15,11 @@ namespace GraphicalProgrammingLanguageApplication
         Circle drawCircle;
         Triangle drawTriangle;
 
+        List<string> loopIndex = new List<string>();
+        int processLoop = 0;
+        string loadLoop;
+        string loopContent;
+
         //Calling classes
         public ParseRichCommand(PictureBox pictureBox, ParseCommand parseCommand, ParseVariableCommand parseVariableCommand, Circle drawCircle, Square drawSquare, Triangle drawTriangle)
         {
@@ -34,8 +39,48 @@ namespace GraphicalProgrammingLanguageApplication
 
             foreach (string direct in commandList)
             {
+
+                if (direct.Contains("loop") == true)
+                {
+                    string loadLoop = direct.Trim().ToLower();
+
+                    List<string> loadValue = new List<string>(
+                                    loadLoop.Split(new string[] { ",", " " },
+                                    StringSplitOptions.RemoveEmptyEntries));
+
+
+                    int processLoop = Int32.Parse(loadValue[2]);
+
+                    foreach (string loopLoad in commandList)
+                    {
+                        if (loopLoad.Contains("end") == true)
+                        {
+                            for (int i = 0; i < processLoop; i++)
+                            {
+                                foreach (string j in loopIndex)
+                                {
+                                    string loopContent = j;
+                                    parseRich(loopContent);
+                                }
+                                System.Diagnostics.Debug.WriteLine("Amount of loops: " + i);    
+                            }
+                        }
+                        else
+                        {
+                            if (loopLoad.Contains("loop") == true)
+                            {
+                                System.Diagnostics.Debug.WriteLine("Ignore loopIndex");
+                            }
+                            else
+                            {
+                                loopIndex.Add(loopLoad);
+                            }
+                        }
+                    }
+                }
+
                 //Checks if ParseVariableCommand is null, if it is, it parses the data
-                if (direct.Contains("=") == true)
+                else if (direct.Contains("=") == true)
                 {
                     if (pvCommand == null)
                     {
