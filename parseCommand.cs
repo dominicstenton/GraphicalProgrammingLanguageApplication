@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GraphicalProgrammingLanguageApplication
 {
@@ -12,6 +13,8 @@ namespace GraphicalProgrammingLanguageApplication
         Square drawSquare;
         Circle drawCircle;
         Triangle drawTriangle;
+        Dictionary<string, int> uniqueValues;
+        int result;
 
         public ParseCommand(PictureBox pictureBox, Circle drawCircle, Square drawSquare, Triangle drawTriangle)
         {
@@ -21,28 +24,54 @@ namespace GraphicalProgrammingLanguageApplication
             this.drawTriangle = drawTriangle;
         }
 
+        //Method RehashValue holding KeyValue pairs dictionary (uniqueValues)
+        public void RehashValue(Dictionary<string, int> valueDiction)
+        {
+            uniqueValues = valueDiction;
+
+            foreach(KeyValuePair<string, int> kvp in uniqueValues)
+            {
+                System.Diagnostics.Debug.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+            }
+        }
+
         public void Parse(string load)
         {
             string instruction = "default";
+            string equals = "=";
             int variable1 = 0;
             int variable2 = 0;
+            int variable3 = 0;
+
             load = load.Trim().ToLower();
-            List<string> loadVar = new List<string>(
+
+            List<string> loadValue = new List<string>(
                 load.Split(new string[] { ",", " " }, 
                 StringSplitOptions.RemoveEmptyEntries));
 
-            for (int q = 0; q < loadVar.Count; q++)
+            for (int q = 0; q < loadValue.Count; q++)
             {
                 if (q == 0)
                 {
-                    instruction = loadVar[q];
+                    instruction = loadValue[q];
                 }
 
                 else if (q == 1)
                 {
                     try
                     {
-                        variable1 = int.Parse(loadVar[q]);
+                        if(loadValue[q] == "=")
+                        {
+                            equals = variable1.ToString();
+                        }
+                        else if (uniqueValues.TryGetValue(loadValue[q], out result))
+                        {
+                            variable1 = result;
+                        }
+                        else
+                        {
+                            variable1 = int.Parse(loadValue[q]);
+                        }
                     }
 
                     catch (FormatException)
@@ -55,18 +84,24 @@ namespace GraphicalProgrammingLanguageApplication
                 {
                     try
                     {
-                        variable2 = int.Parse(loadVar[q]);
+                        variable2 = int.Parse(loadValue[q]);
                     }
-                    catch
+                    catch (FormatException)
                     {
                         Console.WriteLine("This is an invalid command");
                     }
+                }
+
+                else if (q == 3)
+                {
+                        variable3 = int.Parse(loadValue[q]);
                 }
 
                 else
                 {
                     Console.Write("Error");
                 }
+                Console.WriteLine(instruction + " " + equals + " " + variable1);
             }
 
             try {

@@ -33,6 +33,7 @@ namespace GraphicalProgrammingLanguageApplication
         Triangle drawTriangle;
         ParseRichCommand richCommand;
         ParseCommand varCommand;
+        ParseVariableCommand pvCommand;
         
         public FormGraphicalProgrammingLanguageApplication()
         {
@@ -43,10 +44,9 @@ namespace GraphicalProgrammingLanguageApplication
             drawCircle = new Circle(Graphics.FromImage(outputBitmap));
             drawTriangle = new Triangle(Graphics.FromImage(outputBitmap));
             varCommand = new ParseCommand(pictureBoxCanvas, drawCircle, drawSquare, drawTriangle);
-            richCommand = new ParseRichCommand(pictureBoxCanvas, varCommand);
-
+            richCommand = new ParseRichCommand(pictureBoxCanvas, varCommand, pvCommand, drawCircle, drawSquare, drawTriangle);
+            pvCommand = new ParseVariableCommand(pictureBoxCanvas, varCommand, drawCircle, drawSquare, drawTriangle);
         }
-
         //New menu item
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -55,7 +55,6 @@ namespace GraphicalProgrammingLanguageApplication
             myForm.ShowDialog();
             this.Close();
         }
-
         //Open menu item allowing the user to open/import a text file
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -67,7 +66,7 @@ namespace GraphicalProgrammingLanguageApplication
                 openFileDialog.RestoreDirectory = true;
 
             }
-                OpenFileDialog dlg = new OpenFileDialog();
+            OpenFileDialog dlg = new OpenFileDialog();
             String retProg = richCommandLine.Text;
             var fileContent = string.Empty;
             var filePath = string.Empty;
@@ -83,13 +82,11 @@ namespace GraphicalProgrammingLanguageApplication
                 }
             }
         }
-
         //Save as... menu item allowing the user to save a text file of the application
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog dlg = new SaveFileDialog();
             String retProg = richCommandLine.Text;
-
             List<string> commandLineList = new List<string>(
                             retProg.Split(new string[] { "\r\n" }, 
                             StringSplitOptions.RemoveEmptyEntries));
@@ -97,28 +94,23 @@ namespace GraphicalProgrammingLanguageApplication
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 StreamWriter writer = new StreamWriter(dlg.FileName);
-
                 for (int i = 0; i < commandLineList.Count; i++)
                 {
                     writer.WriteLine(commandLineList[i]);
                 }
-
                 writer.Close();
             }
         }
-
         //Exit menu item allowing the user to exit the program
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         //Help button being clicked (tool strip menu item)
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("An application used to simulate a programming language for educational purposes.");
         }
-
         //Command line waiting to be called (textbox)
         private void commandLine_KeyDown(object sender, KeyEventArgs e)
         {
@@ -132,7 +124,6 @@ namespace GraphicalProgrammingLanguageApplication
                     {
                         richCommand.parseRich(charge);
                     }
-
                     else
                     {
                         varCommand.Parse(direct);
@@ -142,20 +133,17 @@ namespace GraphicalProgrammingLanguageApplication
                     Refresh();
             }
         }
-
         //Run button being clicked (incomplete)
         private void buttonRun_Click(object sender, EventArgs e)
         {
-
+ 
         }
-
         //Canvas being given an initial position to hold
         private void pictureBox_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             g.DrawImageUnscaled(outputBitmap, 0, 0);
         }
-
         //Clear button (incomplete)
         private void clear_MouseDown(object sender, MouseEventArgs e)
         {

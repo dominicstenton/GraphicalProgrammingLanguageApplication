@@ -8,7 +8,6 @@ using System.Windows.Forms;
 
 namespace GraphicalProgrammingLanguageApplication
 {
-
    public class PictureBox
     {
         Graphics g;
