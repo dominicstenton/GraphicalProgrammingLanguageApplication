@@ -24,14 +24,19 @@ namespace GraphicalProgrammingLanguageApplication
             this.drawTriangle = drawTriangle;
         }
 
+        public class h : Exception
+        {
+
+        }
+
         //Method RehashValue holding KeyValue pairs dictionary (uniqueValues)
         public void RehashValue(Dictionary<string, int> valueDiction)
         {
             uniqueValues = valueDiction;
 
-            foreach(KeyValuePair<string, int> kvp in uniqueValues)
+            foreach (KeyValuePair<string, int> kvp in uniqueValues)
             {
-                System.Diagnostics.Debug.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+                //System.Diagnostics.Debug.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
             }
         }
 
@@ -46,7 +51,7 @@ namespace GraphicalProgrammingLanguageApplication
             load = load.Trim().ToLower();
 
             List<string> loadValue = new List<string>(
-                load.Split(new string[] { ",", " " }, 
+                load.Split(new string[] { ",", " " },
                 StringSplitOptions.RemoveEmptyEntries));
 
             for (int q = 0; q < loadValue.Count; q++)
@@ -60,9 +65,13 @@ namespace GraphicalProgrammingLanguageApplication
                 {
                     try
                     {
-                        if(loadValue[q] == "=")
+                        if (loadValue[q] == "=")
                         {
                             equals = variable1.ToString();
+                        }
+                        else if (uniqueValues == null)
+                        {
+                            variable1 = int.Parse(loadValue[q]);
                         }
                         else if (uniqueValues.TryGetValue(loadValue[q], out result))
                         {
@@ -76,7 +85,7 @@ namespace GraphicalProgrammingLanguageApplication
 
                     catch (FormatException)
                     {
-                        Console.WriteLine("This is an invalid command");
+                        //Console.WriteLine("This is an invalid command");
                     }
                 }
 
@@ -88,23 +97,24 @@ namespace GraphicalProgrammingLanguageApplication
                     }
                     catch (FormatException)
                     {
-                        Console.WriteLine("This is an invalid command");
+                        //Console.WriteLine("This is an invalid command");
                     }
                 }
 
                 else if (q == 3)
                 {
-                        variable3 = int.Parse(loadValue[q]);
+                    variable3 = int.Parse(loadValue[q]);
                 }
 
                 else
                 {
                     Console.Write("Error");
                 }
-                Console.WriteLine(instruction + " " + equals + " " + variable1);
+                //Console.WriteLine(instruction + " " + equals + " " + variable1);
             }
 
-            try {
+            try
+            {
 
                 if (instruction.Equals("drawto") == true)
                 {
@@ -121,19 +131,19 @@ namespace GraphicalProgrammingLanguageApplication
                 else if (instruction.Equals("rect") == true)
                 {
                     drawSquare.createSquare(variable1, variable2);
-                    Console.WriteLine("A Square has been drawn with the value of " + variable1 +  " & " + variable2);
+                    //Console.WriteLine("A Square has been drawn with the value of " + variable1 + " & " + variable2);
                 }
 
                 else if (instruction.Equals("circle") == true)
                 {
                     drawCircle.createCircle(variable1);
-                    Console.WriteLine("A Circle has been drawn with the value of " + variable1);
+                    //Console.WriteLine("A Circle has been drawn with the value of " + variable1);
                 }
 
                 else if (instruction.Equals("triangle") == true)
                 {
                     drawTriangle.CreateTriangle();
-                    Console.WriteLine("A Triangle has been drawn with the value of " + variable1 + " & " + variable2);
+                    //Console.WriteLine("A Triangle has been drawn with the value of " + variable1 + " & " + variable2);
                 }
 
                 //Changes pen color to red
@@ -187,13 +197,13 @@ namespace GraphicalProgrammingLanguageApplication
 
                 else
                 {
-                    Console.WriteLine("This is an invalid command");
+                    //Console.WriteLine("This is an invalid command");
                 }
             }
             catch (ArgumentException)
             {
                 Console.WriteLine("Error");
             }
-            }
         }
     }
+}
