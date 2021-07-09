@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+//Test
 /*
  * An application used to simulate a programming language for educational purposes.
  * Written by Dominic Stenton
@@ -34,7 +34,7 @@ namespace GraphicalProgrammingLanguageApplication
         ParseRichCommand richCommand;
         ParseCommand varCommand;
         ParseVariableCommand pvCommand;
-        
+
         public FormGraphicalProgrammingLanguageApplication()
         {
             //Initialization section where other classes are called
@@ -73,7 +73,7 @@ namespace GraphicalProgrammingLanguageApplication
 
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-               filePath = dlg.FileName;
+                filePath = dlg.FileName;
                 var fileStream = dlg.OpenFile();
                 using (StreamReader reader = new StreamReader(fileStream))
                 {
@@ -88,7 +88,7 @@ namespace GraphicalProgrammingLanguageApplication
             SaveFileDialog dlg = new SaveFileDialog();
             String retProg = richCommandLine.Text;
             List<string> commandLineList = new List<string>(
-                            retProg.Split(new string[] { "\r\n" }, 
+                            retProg.Split(new string[] { "\r\n" },
                             StringSplitOptions.RemoveEmptyEntries));
 
             if (dlg.ShowDialog() == DialogResult.OK)
@@ -118,25 +118,25 @@ namespace GraphicalProgrammingLanguageApplication
             {
                 String direct = commandLine.Text.Trim().ToLower();
                 String charge = richCommandLine.Text.Trim().ToLower();
-                
-                    //Run command
-                    if (direct.Equals("run") == true)
-                    {
-                        richCommand.parseRich(charge);
-                    }
-                    else
-                    {
-                        varCommand.Parse(direct);
-                    }
 
-                    commandLine.Text = "";
-                    Refresh();
+                //Run command
+                if (direct.Equals("run") == true)
+                {
+                    richCommand.parseRich(charge);
+                }
+                else
+                {
+                    varCommand.Parse(direct);
+                }
+
+                commandLine.Text = "";
+                Refresh();
             }
         }
         //Run button being clicked (incomplete)
         private void buttonRun_Click(object sender, EventArgs e)
         {
- 
+
         }
         //Canvas being given an initial position to hold
         private void pictureBox_Paint(object sender, PaintEventArgs e)
@@ -146,6 +146,37 @@ namespace GraphicalProgrammingLanguageApplication
         }
         //Clear button (incomplete)
         private void clear_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void pictureBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richCommandLine_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            System.InvalidOperationException exOne = new System.InvalidOperationException("this operation isn't allowed");
+            throw exOne;
+        }
+
+        public void richTextBox1_TextChanged_1(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }

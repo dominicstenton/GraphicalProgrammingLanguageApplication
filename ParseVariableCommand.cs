@@ -10,13 +10,14 @@ namespace GraphicalProgrammingLanguageApplication
 {
     public class ParseVariableCommand
     {
-        PictureBox pictureBoxCanvas; 
+        PictureBox pictureBoxCanvas;
         ParseCommand parseTell;
         int ans;
         Dictionary<string, int> valueDiction = new Dictionary<string, int>();
         Square drawSquare;
         Circle drawCircle;
         Triangle drawTriangle;
+
         //Calling classes
         public ParseVariableCommand(PictureBox pictureBoxCanvas, ParseCommand parseCommand, Circle drawCircle, Square drawSquare, Triangle drawTriangle)
         {
@@ -26,6 +27,7 @@ namespace GraphicalProgrammingLanguageApplication
             this.drawSquare = drawSquare;
             this.drawTriangle = drawTriangle;
         }
+
         //Parsing method
         public void Parse(string direct)
         {
@@ -57,7 +59,20 @@ namespace GraphicalProgrammingLanguageApplication
                     }
                     else
                     {
-                        assignValue = Int32.Parse(loadValue[i]);
+
+                        //Exception
+                        try
+                        {
+                            assignValue = Int32.Parse(loadValue[i]);
+                        }
+                        catch
+                        {
+
+                            GraphicalProgrammingLanguageApplication.exception exMeth = new exception();
+                            exMeth.stuff(0);
+                        
+                        }
+
                     }
                 }
                 else if (i == 3)
@@ -73,8 +88,8 @@ namespace GraphicalProgrammingLanguageApplication
                     Console.WriteLine("Parameter boundary has been met");
                 }
             }
-            try 
-            { 
+            try
+            {
                 valueDiction.Add(valueName, assignValue);
             }
             catch (ArgumentException)
