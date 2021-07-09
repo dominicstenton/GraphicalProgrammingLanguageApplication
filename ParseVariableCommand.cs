@@ -17,15 +17,19 @@ namespace GraphicalProgrammingLanguageApplication
         Square drawSquare;
         Circle drawCircle;
         Triangle drawTriangle;
+        ParseVariableCommand pvCommand;
+        ParseRichCommand prCommand;
+        parseCondition pcCommand;
 
         //Calling classes
-        public ParseVariableCommand(PictureBox pictureBoxCanvas, ParseCommand parseCommand, Circle drawCircle, Square drawSquare, Triangle drawTriangle)
+        public ParseVariableCommand(PictureBox pictureBoxCanvas, ParseCommand parseCommand, Circle drawCircle, Square drawSquare, Triangle drawTriangle, ParseRichCommand prCommand)
         {
             this.pictureBoxCanvas = pictureBoxCanvas;
             this.parseTell = parseCommand;
             this.drawCircle = drawCircle;
             this.drawSquare = drawSquare;
             this.drawTriangle = drawTriangle;
+            this.prCommand = prCommand;
         }
 
         //Parsing method
@@ -68,8 +72,8 @@ namespace GraphicalProgrammingLanguageApplication
                         catch
                         {
 
-                            GraphicalProgrammingLanguageApplication.exception exMeth = new exception();
-                            exMeth.stuff(0);
+                            //GraphicalProgrammingLanguageApplication.exception exMeth = new exception();
+                           // exMeth.stuff(0);
                         
                         }
 
@@ -102,6 +106,16 @@ namespace GraphicalProgrammingLanguageApplication
                 valueDiction.TryGetValue(valueName, out ans);
                 int updateValue = ans + assignValue1;
                 valueDiction[valueName] = updateValue;
+            }
+
+            if (prCommand == null)
+            {
+                prCommand = new ParseRichCommand(pictureBoxCanvas, parseTell, pvCommand, drawCircle, drawSquare, drawTriangle);
+                prCommand.convertVal(valueDiction);
+            }
+            else
+            {
+                prCommand.convertVal(valueDiction);
             }
             parseTell.RehashValue(valueDiction);
         }

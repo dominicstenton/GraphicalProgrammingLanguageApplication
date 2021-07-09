@@ -14,6 +14,10 @@ namespace GraphicalProgrammingLanguageApplication
         Square drawSquare;
         Circle drawCircle;
         Triangle drawTriangle;
+        parseCondition pcCommand;
+        ParseRichCommand prCommand;
+
+        Dictionary<string, int> storedVariables = new Dictionary<string, int>();
 
         List<string> loopIndex = new List<string>();
         int processLoop = 0;
@@ -31,10 +35,15 @@ namespace GraphicalProgrammingLanguageApplication
             this.drawTriangle = drawTriangle;
         }
 
+        public void convertVal(Dictionary<string, int> valueDiction)
+        {
+            storedVariables = valueDiction;
+        }
+
         public void parseRich(string charge)
         {
             List<string> commandList = new List<string>(
-                charge.Split(new string[] { "\r\n" }, 
+                charge.Split(new string[] { "\r\n" },
                 StringSplitOptions.RemoveEmptyEntries));
 
             foreach (string direct in commandList)
@@ -62,7 +71,7 @@ namespace GraphicalProgrammingLanguageApplication
                                     string loopContent = j;
                                     parseRich(loopContent);
                                 }
-                                System.Diagnostics.Debug.WriteLine("Amount of loops: " + i);    
+                                System.Diagnostics.Debug.WriteLine("Amount of loops: " + i);
                             }
                         }
                         else
@@ -77,14 +86,29 @@ namespace GraphicalProgrammingLanguageApplication
                             }
                         }
                     }
+
                 }
 
+               else if (direct.Contains("if") == true)
+                {
+                    if (pcCommand == null)
+                    {
+                        pcCommand = new parseCondition(pictureBoxCanvas, parseTell, prCommand);
+                        pcCommand.ifParser(commandList);
+                    }
+                    else
+                    {
+                        pcCommand.ifParser(commandList);
+                    }
+                    
+                } 
+                //Variables
                 //Checks if ParseVariableCommand is null, if it is, it parses the data
                 else if (direct.Contains("=") == true)
                 {
                     if (pvCommand == null)
                     {
-                        pvCommand = new ParseVariableCommand(pictureBoxCanvas, parseTell, drawCircle, drawSquare, drawTriangle);
+                        pvCommand = new ParseVariableCommand(pictureBoxCanvas, parseTell, drawCircle, drawSquare, drawTriangle, prCommand);
                         pvCommand.Parse(direct);
                     }
                     else

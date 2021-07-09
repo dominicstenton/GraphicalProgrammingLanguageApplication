@@ -47,6 +47,7 @@ namespace GraphicalProgrammingLanguageApplication
             int variable1 = 0;
             int variable2 = 0;
             int variable3 = 0;
+            string op;
 
             load = load.Trim().ToLower();
 
@@ -93,7 +94,18 @@ namespace GraphicalProgrammingLanguageApplication
                 {
                     try
                     {
-                        variable2 = int.Parse(loadValue[q]);
+                        bool greaterThan = loadValue[q] == ">";
+                        bool lesserThan = loadValue[q] == "<";
+
+                        if (greaterThan | lesserThan)
+                        {
+                            op = loadValue[q];
+                        }
+                        else
+                        {
+                            variable2 = int.Parse(loadValue[q]);
+                        }
+                        //variable2 = int.Parse(loadValue[q]);
                     }
                     catch (FormatException)
                     {
