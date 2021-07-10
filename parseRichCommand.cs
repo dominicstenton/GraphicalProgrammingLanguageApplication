@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GraphicalProgrammingLanguageApplication
 {
+    /// <summary>A class capable of parsing information that will be inputed through a miltiline system/textbox</summary>
     public class ParseRichCommand
     {
         PictureBox pictureBoxCanvas;
@@ -16,13 +14,8 @@ namespace GraphicalProgrammingLanguageApplication
         Triangle drawTriangle;
         parseCondition pcCommand;
         ParseRichCommand prCommand;
-
-        Dictionary<string, int> storedVariables = new Dictionary<string, int>();
-
+        Dictionary<string, int> stowVar = new Dictionary<string, int>();
         List<string> loopIndex = new List<string>();
-        int processLoop = 0;
-        string loadLoop;
-        string loopContent;
 
         //Calling classes
         public ParseRichCommand(PictureBox pictureBox, ParseCommand parseCommand, ParseVariableCommand parseVariableCommand, Circle drawCircle, Square drawSquare, Triangle drawTriangle)
@@ -34,12 +27,10 @@ namespace GraphicalProgrammingLanguageApplication
             this.drawSquare = drawSquare;
             this.drawTriangle = drawTriangle;
         }
-
         public void convertVal(Dictionary<string, int> valueDiction)
         {
-            storedVariables = valueDiction;
+            stowVar = valueDiction;
         }
-
         public void parseRich(string charge)
         {
             List<string> commandList = new List<string>(
@@ -48,7 +39,6 @@ namespace GraphicalProgrammingLanguageApplication
 
             foreach (string direct in commandList)
             {
-
                 if (direct.Contains("loop") == true)
                 {
                     string loadLoop = direct.Trim().ToLower();
@@ -56,7 +46,6 @@ namespace GraphicalProgrammingLanguageApplication
                     List<string> loadValue = new List<string>(
                                     loadLoop.Split(new string[] { ",", " " },
                                     StringSplitOptions.RemoveEmptyEntries));
-
 
                     int processLoop = Int32.Parse(loadValue[2]);
 
@@ -71,14 +60,14 @@ namespace GraphicalProgrammingLanguageApplication
                                     string loopContent = j;
                                     parseRich(loopContent);
                                 }
-                                System.Diagnostics.Debug.WriteLine("Amount of loops: " + i);
+                                System.Diagnostics.Debug.WriteLine("Calculated loops: " + i);
                             }
                         }
                         else
                         {
                             if (loopLoad.Contains("loop") == true)
                             {
-                                System.Diagnostics.Debug.WriteLine("Ignore loopIndex");
+                                System.Diagnostics.Debug.WriteLine("Ignore");
                             }
                             else
                             {
@@ -86,9 +75,7 @@ namespace GraphicalProgrammingLanguageApplication
                             }
                         }
                     }
-
                 }
-
                else if (direct.Contains("if") == true)
                 {
                     if (pcCommand == null)
@@ -100,7 +87,6 @@ namespace GraphicalProgrammingLanguageApplication
                     {
                         pcCommand.ifParser(commandList);
                     }
-                    
                 } 
                 //Variables
                 //Checks if ParseVariableCommand is null, if it is, it parses the data

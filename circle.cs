@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace GraphicalProgrammingLanguageApplication
 {
+    /// <summary>This class is used to generate a Circle with user given parameter.</summary>
     public class Circle
     {
         Graphics g;
@@ -23,27 +19,27 @@ namespace GraphicalProgrammingLanguageApplication
             b = new SolidBrush(Color.Yellow);
         }
 
-        //Fill shape enabled
+        /// <summary>Fill shape enabled.</summary>
         public void BrushOn()
         {
             shapeFill = true;
         }
 
-        //Fill shape disabled
+        /// <summary>/Fill shape disabled.</summary>
         public void BrushOff()
         {
             shapeFill = false;
         }
 
-        //Circle being generated
+        /// <summary>Creates the circle.</summary>
+        /// <param name="radius">The radius.</param>
         public void createCircle(int radius)
         {
             if (shapeFill == true)
             {
-                g.FillEllipse(b, positionX, positionY, radius *2, radius *2);
-                g.DrawEllipse(p, positionX, positionY, radius *2, radius *2);
+                g.FillEllipse(b, positionX, positionY, radius * 2, radius * 2);
+                g.DrawEllipse(p, positionX, positionY, radius * 2, radius * 2);
             }
-
             else
             {
                 g.DrawEllipse(p, positionX, positionY, radius * 2, radius * 2);

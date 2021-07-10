@@ -1,22 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace GraphicalProgrammingLanguageApplication
 {
+    /// <summary>This class is used to generate custom exceptions.</summary>
     class exception : Exception
     {
-        public void stuff(int mars)
+        /// <summary>Handles the exception.</summary>
+        /// <param name="use">Unused.</param>
+        public void handle()
         {
-
-            System.InvalidOperationException exceptionOne = new System.InvalidOperationException("this operation isn't allowed");
-            throw exceptionOne;
-            MessageBox.Show("Test");
-
+            System.InvalidOperationException exceptionOne = new System.InvalidOperationException("Custom Exception: This operation isn't allowed. Please rerun the program.");
+            System.Windows.Forms.MessageBox.Show("exception" + exceptionOne);
         }
-
     }
 }

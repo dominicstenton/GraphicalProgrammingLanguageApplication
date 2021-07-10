@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 //class made to check syntax
 namespace GraphicalProgrammingLanguageApplication
 {
+    /// <summary>A class designed to check user inputted data for errors, line by line.</summary>
     class syntax
     {
         PictureBox pictureBoxCanvas;
@@ -38,7 +39,6 @@ namespace GraphicalProgrammingLanguageApplication
                 commandLine.Split(new string[] { "\r\n" },
                 StringSplitOptions.RemoveEmptyEntries));
 
-
             foreach (string thing in loadValue)
             {
                 lineCount++;
@@ -54,15 +54,11 @@ namespace GraphicalProgrammingLanguageApplication
                 stuff.Split(new string[] { ",", " " },
                 StringSplitOptions.RemoveEmptyEntries));
 
-
-
             for (int i = 0; i < loadValue.Count; i++)
             {
-                //commandCount++;
 
                 if (i % 2 == 0)
                 {
-
                     for (int n = 0; n < commandz.Length; n++)
                     {
                         if (loadValue[i] == commandz[n])
@@ -73,11 +69,9 @@ namespace GraphicalProgrammingLanguageApplication
                         {
                             string update = "spelling incorrect " + lineCount + " at space 1";
                             System.Windows.Forms.MessageBox.Show(update);
-                            // System.Diagnostics.Debug.WriteLine("incorrect spelling line: " + lineCount);
-                            //return;
+
                         }
                     }
-
                 }
                 else
                 {
@@ -96,9 +90,7 @@ namespace GraphicalProgrammingLanguageApplication
                         System.Windows.Forms.MessageBox.Show(update2);
                     }
                 }
-
             }
-
         }
     }
 }

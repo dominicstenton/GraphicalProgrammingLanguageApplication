@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Drawing;
 
 namespace GraphicalProgrammingLanguageApplication
 {
+    /// <summary>A class used to parse variable commands. Using data from the multi-line parser to seperate into different methods.</summary>
     public class ParseVariableCommand
     {
         PictureBox pictureBoxCanvas;
@@ -63,20 +59,8 @@ namespace GraphicalProgrammingLanguageApplication
                     }
                     else
                     {
-
-                        //Exception
-                        try
-                        {
-                            assignValue = Int32.Parse(loadValue[i]);
-                        }
-                        catch
-                        {
-
-                            //GraphicalProgrammingLanguageApplication.exception exMeth = new exception();
-                           // exMeth.stuff(0);
-                        
-                        }
-
+                        assignValue = Int32.Parse(loadValue[i]);
+ 
                     }
                 }
                 else if (i == 3)
@@ -98,16 +82,25 @@ namespace GraphicalProgrammingLanguageApplication
             }
             catch (ArgumentException)
             {
-                System.Diagnostics.Debug.WriteLine(valueName + " This value already exists");
+                System.Diagnostics.Debug.WriteLine(valueName + " Enter another value");
             }
             if (valueDiction.ContainsKey(valueName))
             {
-                System.Diagnostics.Debug.WriteLine(assignValue1);
                 valueDiction.TryGetValue(valueName, out ans);
                 int updateValue = ans + assignValue1;
                 valueDiction[valueName] = updateValue;
+                if (pcCommand == null)
+                {
+                    string send = updateValue.ToString();
+                    pcCommand = new parseCondition(pictureBoxCanvas, parseTell, prCommand);
+                    pcCommand.convertVal(send);
+                }
+                else
+                {
+                    string send = updateValue.ToString();
+                    pcCommand.convertVal(send);
+                }
             }
-
             if (prCommand == null)
             {
                 prCommand = new ParseRichCommand(pictureBoxCanvas, parseTell, pvCommand, drawCircle, drawSquare, drawTriangle);
@@ -116,6 +109,17 @@ namespace GraphicalProgrammingLanguageApplication
             else
             {
                 prCommand.convertVal(valueDiction);
+            }
+            if (pcCommand == null)
+            {
+                string send = ans.ToString();
+                pcCommand = new parseCondition(pictureBoxCanvas, parseTell, prCommand);
+                pcCommand.convertVal(send);
+            }
+            else
+            {
+                string send = ans.ToString();
+                pcCommand.convertVal(send);
             }
             parseTell.RehashValue(valueDiction);
         }

@@ -1,31 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GraphicalProgrammingLanguageApplication
 {
+    /// <summary>
+    ///   <para>A class used to further parse information into if and else commands.</para>
+    /// </summary>
     public class parseCondition
     {
         PictureBox pictureBoxCanvas;
-        //variabletextparser
         ParseVariableCommand pvCommand;
-        //textparser
         ParseCommand parseTell;
-        //multiline
         ParseRichCommand richCommand;
-        //parseCommand
-        parseCondition pcCommand;
-
         Square drawSquare;
         Circle drawCircle;
         Triangle drawTriangle;
 
-        int result;
-        int result2;
-        int elseCounter = 0;
-        int ifCounter = 0;
+        string sum = "";
+        int checkElse = 0;
+        int checkIf = 0;
+        int useIf = 0;
+        int useIf1 = 0;
+        int useElse = 0;
+        int useElse1 = 0;
+        int ifElse = 0;
+        int stop = 0;
+        string ifCondition;
+        string elseCondition;
 
         List<string> commandList = new List<string>();
         List<string> ifList = new List<string>();
@@ -38,164 +39,157 @@ namespace GraphicalProgrammingLanguageApplication
             this.parseTell = parseCommand;
             this.richCommand = parseRichCommand;
         }
-
-        public void ValueConverter(Dictionary<string, int> varDictionary)
+        public void convertVal(string use)
         {
-            userVariables = varDictionary;
+            sum = use;
         }
-
         public void ifParser(List<string> commandList)
         {
-            int ifVal = 0;
-            string ifCondition;
-            int ifVal2 = 0;
-            int elseVal = 0;
-            string elseCondition;
-            int elseVal2 = 0;
-
             for (int i = 0; i < commandList.Count; i++)
             {
                 if (commandList[i].Contains("if") == true)
                 {
-                    ifCounter = i;
+                    checkIf = i;
                 }
                 else if (commandList[i].Contains("else") == true)
                 {
-                    elseCounter = i;
+                    checkElse = i;
                 }
-
             }
             for (int i = 0; i < commandList.Count; i++)
             {
-                System.Diagnostics.Debug.WriteLine("loopcounter: " + i);
-                if (i >= ifCounter && i < elseCounter)
+                if (i >= checkIf && i < checkElse)
                 {
                     ifList.Add(commandList[i]);
                 }
-                else if (i > elseCounter && i <= commandList.Count)
+                else if (i > checkElse && i <= commandList.Count)
                 {
-                    System.Diagnostics.Debug.WriteLine("command: " + commandList[i] + "counter: " + i);
                     elseList.Add(commandList[i]);
                 }
             }
-
-
             foreach (string inputs in commandList)
             {
-                List<string> ifParams = new List<string>(
+                List<string> pCommands = new List<string>(
                                     inputs.Split(new string[] { ",", " " },
                                     StringSplitOptions.RemoveEmptyEntries));
 
                 if (inputs.Contains("if") == true)
                 {
-                    for (int i = 0; i < ifParams.Count; i++)
+                    for (int i = 0; i < pCommands.Count; i++)
                     {
                         if (i == 1)
                         {
-                            if (userVariables.TryGetValue(ifParams[i], out result))
+                            int testNum = 0;
+                            string pCommand = pCommands[i];
+                            bool isNum = int.TryParse(pCommand, out testNum);
+
+                            if (isNum == true)
                             {
-                                ifVal = result;
+                                useIf = int.Parse(pCommand);
                             }
                             else
                             {
-                                ifVal = int.Parse(ifParams[i]);
+                                useIf = ifElse;
                             }
                         }
                         else if (i == 2)
                         {
-                            ifCondition = ifParams[i];
+                            ifCondition = pCommands[i];
                         }
                         else if (i == 3)
                         {
-                            ifVal2 = int.Parse(ifParams[i]);
+                            useIf1 = int.Parse(pCommands[i]);
                         }
                         else
                         {
-                            System.Diagnostics.Debug.WriteLine("...");
+                            System.Diagnostics.Debug.WriteLine("");
                         }
                     }
                 }
                 else if (inputs.Contains("else") == true)
                 {
-                    for (int i = 0; i < ifParams.Count; i++)
+                    for (int i = 0; i < pCommands.Count; i++)
                     {
                         if (i == 1)
                         {
-                            if (userVariables.TryGetValue(ifParams[i], out result2))
+                            int testNum = 0;
+                            string pCommand = pCommands[i];
+                            bool isNum = int.TryParse(pCommand, out testNum);
+
+                            if (isNum == true)
                             {
-                                elseVal = result2;
+                                useElse = int.Parse(pCommand);
                             }
                             else
                             {
-                                elseVal = int.Parse(ifParams[i]);
+                                useElse = ifElse;
                             }
                         }
                         else if (i == 2)
                         {
-                            elseCondition = ifParams[i];
+                            elseCondition = pCommands[i];
                         }
                         else if (i == 3)
                         {
-                            elseVal2 = int.Parse(ifParams[i]);
-                            System.Diagnostics.Debug.WriteLine(elseVal2);
-
+                            useElse1 = int.Parse(pCommands[i]);
+                            System.Diagnostics.Debug.WriteLine(useElse1);
                         }
                         else
                         {
-                            System.Diagnostics.Debug.WriteLine("...");
+                            System.Diagnostics.Debug.WriteLine("");
                         }
                     }
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine("...");
+                    System.Diagnostics.Debug.WriteLine("");
                 }
             }
-            System.Diagnostics.Debug.WriteLine(ifVal + " " + ifVal2 + " " + elseVal + " " + elseVal2);
-            ifElseDecider(ifVal, ifVal2, elseVal, elseVal2);
+            System.Diagnostics.Debug.WriteLine(useIf + " " + useIf1 + " " + useElse + " " + useElse1);
+            ifElseDecider(useIf, useIf1, useElse, useElse1);
         }
-        public void ifElseDecider(int ifVal, int ifVal2, int elseVal, int elseVal2)
+        public void ifElseDecider(int useIf, int useIf1, int useElse, int useElse1)
         {
-            if (ifVal > ifVal2)
+            if (useIf > useIf1)
             {
-                System.Diagnostics.Debug.WriteLine("if statement executing...");
                 foreach (string item in ifList)
                 {
-                    System.Diagnostics.Debug.WriteLine("executing..." + item);
+                    System.Diagnostics.Debug.WriteLine(item);
                 }
-                ifElseExecution(ifList);
+                ifElseExecute(ifList);
             }
-            else if (elseVal < elseVal2)
+            else if (useElse < useElse1)
             {
-                System.Diagnostics.Debug.WriteLine("else statement executing...");
                 foreach (string item in elseList)
                 {
-                    System.Diagnostics.Debug.WriteLine("executing..." + item);
+                    System.Diagnostics.Debug.WriteLine(item);
                 }
-                ifElseExecution(elseList);
+                ifElseExecute(elseList);
+            }
+        }
+        public void ifElseExecute(List<string> excecute)
+        {
+            if (stop == 1)
+            {
+                return;
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("invalid if else statement currently...");
-            }
-        }
-        public void ifElseExecution(List<string> ifExe)
-        {
-            foreach (string command in ifExe)
-            {
-                System.Diagnostics.Debug.WriteLine("...executing: " + command);
-                if (richCommand == null)
+                System.Diagnostics.Debug.WriteLine(stop);
+                stop = 1;
+                foreach (string command in excecute)
                 {
-                    richCommand = new ParseRichCommand(pictureBoxCanvas, parseTell, pvCommand, drawCircle, drawSquare, drawTriangle);
-                    richCommand.parseRich(command);
-                }
-                else
-                {
-                    richCommand.parseRich(command);
+                    if (richCommand == null)
+                    {
+                        richCommand = new ParseRichCommand(pictureBoxCanvas, parseTell, pvCommand, drawCircle, drawSquare, drawTriangle);
+                        richCommand.parseRich(command);
+                    }
+                    else
+                    {
+                        richCommand.parseRich(command);
+                    }
                 }
             }
         }
-
-
     }
 }

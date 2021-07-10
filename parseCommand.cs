@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace GraphicalProgrammingLanguageApplication
 {
+    /// <summary>A class used to parse information. This class also stored a dictionary used to save dara for later.</summary>
     public class ParseCommand
     {
         PictureBox pictureBoxCanvas;
@@ -14,7 +11,7 @@ namespace GraphicalProgrammingLanguageApplication
         Circle drawCircle;
         Triangle drawTriangle;
         Dictionary<string, int> uniqueValues;
-        int result;
+        int sum;
 
         public ParseCommand(PictureBox pictureBox, Circle drawCircle, Square drawSquare, Triangle drawTriangle)
         {
@@ -23,23 +20,11 @@ namespace GraphicalProgrammingLanguageApplication
             this.drawSquare = drawSquare;
             this.drawTriangle = drawTriangle;
         }
-
-        public class h : Exception
-        {
-
-        }
-
         //Method RehashValue holding KeyValue pairs dictionary (uniqueValues)
         public void RehashValue(Dictionary<string, int> valueDiction)
         {
             uniqueValues = valueDiction;
-
-            foreach (KeyValuePair<string, int> kvp in uniqueValues)
-            {
-                //System.Diagnostics.Debug.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
-            }
         }
-
         public void Parse(string load)
         {
             string instruction = "default";
@@ -47,10 +32,9 @@ namespace GraphicalProgrammingLanguageApplication
             int variable1 = 0;
             int variable2 = 0;
             int variable3 = 0;
-            string op;
+            string operation;
 
             load = load.Trim().ToLower();
-
             List<string> loadValue = new List<string>(
                 load.Split(new string[] { ",", " " },
                 StringSplitOptions.RemoveEmptyEntries));
@@ -61,11 +45,8 @@ namespace GraphicalProgrammingLanguageApplication
                 {
                     instruction = loadValue[q];
                 }
-
                 else if (q == 1)
                 {
-                    try
-                    {
                         if (loadValue[q] == "=")
                         {
                             equals = variable1.ToString();
@@ -74,60 +55,55 @@ namespace GraphicalProgrammingLanguageApplication
                         {
                             variable1 = int.Parse(loadValue[q]);
                         }
-                        else if (uniqueValues.TryGetValue(loadValue[q], out result))
+                        else if (uniqueValues.TryGetValue(loadValue[q], out sum))
                         {
-                            variable1 = result;
+                            variable1 = sum;
                         }
                         else
                         {
                             variable1 = int.Parse(loadValue[q]);
                         }
-                    }
-
-                    catch (FormatException)
-                    {
-                        //Console.WriteLine("This is an invalid command");
-                    }
                 }
-
                 else if (q == 2)
                 {
                     try
                     {
-                        bool greaterThan = loadValue[q] == ">";
-                        bool lesserThan = loadValue[q] == "<";
+                        bool more = loadValue[q] == ">";
+                        bool less = loadValue[q] == "<";
 
-                        if (greaterThan | lesserThan)
+                        if (more | less)
                         {
-                            op = loadValue[q];
+                            operation = loadValue[q];
+                        }
+                        else if (uniqueValues == null)
+                        {
+                            variable2 = int.Parse(loadValue[q]);
+                        }
+                        else if (uniqueValues.TryGetValue(loadValue[q], out sum))
+                        {
+                            variable2 = sum;
                         }
                         else
                         {
                             variable2 = int.Parse(loadValue[q]);
                         }
-                        //variable2 = int.Parse(loadValue[q]);
                     }
                     catch (FormatException)
                     {
-                        //Console.WriteLine("This is an invalid command");
+                        Console.WriteLine("Error");
                     }
                 }
-
                 else if (q == 3)
                 {
                     variable3 = int.Parse(loadValue[q]);
                 }
-
                 else
                 {
                     Console.Write("Error");
                 }
-                //Console.WriteLine(instruction + " " + equals + " " + variable1);
             }
-
             try
             {
-
                 if (instruction.Equals("drawto") == true)
                 {
                     pictureBoxCanvas.drawLine(variable1, variable2);
@@ -206,15 +182,18 @@ namespace GraphicalProgrammingLanguageApplication
                     pictureBoxCanvas.ClearCanvas();
                     Console.WriteLine("You have cleared your canvas!");
                 }
-
+                else if (instruction.Equals("end") == true)
+                {
+                    Console.WriteLine("Error");
+                }
                 else
                 {
-                    //Console.WriteLine("This is an invalid command");
+                    throw new exception();
                 }
             }
-            catch (ArgumentException)
+            catch (exception e)
             {
-                Console.WriteLine("Error");
+                e.handle();
             }
         }
     }

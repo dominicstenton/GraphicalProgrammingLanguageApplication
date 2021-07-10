@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-//Test
+
 /*
  * An application used to simulate a programming language for educational purposes.
  * Written by Dominic Stenton
@@ -20,6 +13,7 @@ using System.Windows.Forms;
 
 namespace GraphicalProgrammingLanguageApplication
 {
+    /// <summary>This is the main class within this project, a form.</summary>
     public partial class FormGraphicalProgrammingLanguageApplication : Form
     {
         //Size of the form
@@ -34,6 +28,8 @@ namespace GraphicalProgrammingLanguageApplication
         ParseRichCommand richCommand;
         ParseCommand varCommand;
         ParseVariableCommand pvCommand;
+        syntax syntax;
+        parseCondition pcCommand;
 
         public FormGraphicalProgrammingLanguageApplication()
         {
@@ -45,7 +41,10 @@ namespace GraphicalProgrammingLanguageApplication
             drawTriangle = new Triangle(Graphics.FromImage(outputBitmap));
             varCommand = new ParseCommand(pictureBoxCanvas, drawCircle, drawSquare, drawTriangle);
             richCommand = new ParseRichCommand(pictureBoxCanvas, varCommand, pvCommand, drawCircle, drawSquare, drawTriangle);
-            pvCommand = new ParseVariableCommand(pictureBoxCanvas, varCommand, drawCircle, drawSquare, drawTriangle);
+            pvCommand = new ParseVariableCommand(pictureBoxCanvas, varCommand, drawCircle, drawSquare, drawTriangle, richCommand);
+            syntax = new syntax(pictureBoxCanvas, varCommand, drawCircle, drawSquare, drawTriangle);
+            pcCommand = new parseCondition(pictureBoxCanvas, varCommand, richCommand);
+
         }
         //New menu item
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -82,6 +81,7 @@ namespace GraphicalProgrammingLanguageApplication
                 }
             }
         }
+
         //Save as... menu item allowing the user to save a text file of the application
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -122,21 +122,20 @@ namespace GraphicalProgrammingLanguageApplication
                 //Run command
                 if (direct.Equals("run") == true)
                 {
+                    
                     richCommand.parseRich(charge);
+                }
+                else if (direct.Equals("check") == true)
+                {
+                    syntax.checkSyntax(charge);
                 }
                 else
                 {
                     varCommand.Parse(direct);
                 }
-
                 commandLine.Text = "";
                 Refresh();
             }
-        }
-        //Run button being clicked (incomplete)
-        private void buttonRun_Click(object sender, EventArgs e)
-        {
-
         }
         //Canvas being given an initial position to hold
         private void pictureBox_Paint(object sender, PaintEventArgs e)
@@ -145,40 +144,10 @@ namespace GraphicalProgrammingLanguageApplication
             g.DrawImageUnscaled(outputBitmap, 0, 0);
         }
         //Clear button (incomplete)
-        private void clear_MouseDown(object sender, MouseEventArgs e)
+        private void Clear_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void pictureBox_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void richCommandLine_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            System.InvalidOperationException exOne = new System.InvalidOperationException("this operation isn't allowed");
-            throw exOne;
-        }
-
-        public void richTextBox1_TextChanged_1(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
+            GraphicalProgrammingLanguageApplication.PictureBox remove = new PictureBox();
+            remove.ClearCanvas();
         }
     }
 }
